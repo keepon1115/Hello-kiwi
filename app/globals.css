@@ -2,14 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================================
-   Hello Kiwi デザインシステム  ―  コンセプト「Hello, World. 世界へのとびら」
-   カラーの単一ソースはこの :root。Tailwind は RGB トリプレットを参照する。
-   役割固定：オレンジ＝行動 / グリーン＝信頼 / イエロー＝楽しさ。
-   レイアウト：モバイル基準＋PCは「野原(field)に置いた絵本のページ(page)」を中央に。
-   ========================================================= */
 :root {
-  /* ── Brand 5色（キッズ＝高彩度デフォルト）── */
+  
   --kiwi-orange: #ee6c2b;
   --orange-rgb: 238 108 43;
   --leaf-green: #7cb342;
@@ -21,17 +15,17 @@
   --cocoa: #5a4329;
   --cocoa-rgb: 90 67 41;
 
-  /* 文字の濃淡 */
+  
   --cocoa-soft: #7a6650;
   --cocoa-faint: #a6968a;
 
-  /* ── 地と紙（今回の追加）── */
-  --page: #fffdf7; /* 中央＝絵本のページ（白に近いクリーム） */
-  --field: #faf5ea; /* 左右の地＝野原 */
-  --field-deep: #f1e9d6; /* 野原の影・帯 */
+  
+  --page: #fffdf7; 
+  --field: #faf5ea; 
+  --field-deep: #f1e9d6; 
   --paper-edge: rgba(90, 67, 41, 0.1);
 
-  /* フォント（next/font が変数を供給。フォールバックを添える） */
+  
   --font-round: 'Zen Maru Gothic', system-ui, sans-serif;
   --font-body: 'Noto Sans JP', system-ui, sans-serif;
   --font-pop: 'Baloo 2', system-ui, sans-serif;
@@ -40,14 +34,13 @@
   --shadow-lift: 0 16px 40px rgba(90, 67, 41, 0.16);
   --shadow-page: 0 18px 50px -18px rgba(90, 67, 41, 0.28);
 
-  /* レイアウト寸法 */
-  --col-main: 480px; /* 中央カラム幅（合意：CLAFT同様480px固定） */
-  --col-left: 290px;
-  --col-right: 104px;
+  
+  --col-main: 980px;
+  --col-left: 270px;
+  --col-right: 96px;
   --header-h: 64px;
 }
 
-/* ── 大人/シニア向けページ：同じ5色を彩度だけ落とす ── */
 [data-tone='adult'] {
   --kiwi-orange: #c9663b;
   --orange-rgb: 201 102 59;
@@ -58,7 +51,6 @@
   --font-round: var(--font-body);
 }
 
-/* ========================= base ========================= */
 * {
   box-sizing: border-box;
 }
@@ -69,7 +61,7 @@ html {
 body {
   margin: 0;
   background-color: var(--field);
-  /* 野原の極薄ドット（絵本感。うるさくならない程度） */
+  
   background-image: radial-gradient(rgb(var(--green-rgb) / 0.05) 1.4px, transparent 1.4px);
   background-size: 22px 22px;
   color: var(--cocoa);
@@ -94,7 +86,6 @@ img { max-width: 100%; display: block; }
   border-radius: 6px;
 }
 
-/* ========================= layout helpers ========================= */
 .container {
   width: 100%;
   max-width: 1120px;
@@ -112,7 +103,6 @@ img { max-width: 100%; display: block; }
   font-size: 0.8rem;
 }
 
-/* セクション見出し：グリーンの安心 + イエロー下線（楽しさ） */
 .section-heading { text-align: center; margin-bottom: clamp(28px, 5vw, 44px); }
 .section-heading h2 {
   font-size: clamp(1.5rem, 6cqi, 2.1rem);
@@ -133,7 +123,6 @@ img { max-width: 100%; display: block; }
 }
 .section-heading p { margin: 0.8em auto 0; max-width: 32em; color: var(--cocoa-soft); }
 
-/* ========================= buttons ========================= */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -162,7 +151,6 @@ img { max-width: 100%; display: block; }
 .btn-lg { font-size: 1.05rem; padding: 1em 1.9em; }
 .btn-sm { font-size: 0.85rem; padding: 0.6em 1.1em; }
 
-/* ========================= cards / chips ========================= */
 .card {
   background: #fff;
   border-radius: 26px;
@@ -184,7 +172,6 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
 }
 
-/* ========================= reveal / animation ========================= */
 .reveal {
   opacity: 0;
   transform: translateY(14px);
@@ -207,11 +194,6 @@ img { max-width: 100%; display: block; }
   96% { transform: scaleY(0.1); }
 }
 
-/* =========================================================
-   SITE SHELL ― モバイル基準 / PCは3カラム
-   ========================================================= */
-
-/* 既定（モバイル）：ヘッダー固定、左右レールは隠す、中央は全幅 */
 .site-grid { display: block; }
 .site-left, .site-right { display: none; }
 .site-main {
@@ -221,7 +203,6 @@ img { max-width: 100%; display: block; }
   padding-top: var(--header-h);
 }
 
-/* ── モバイルヘッダー ── */
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
@@ -245,12 +226,10 @@ img { max-width: 100%; display: block; }
   flex: 0 0 196px;
   min-width: 0;
 }
-.site-header .sh-logo .brand-logo,
-.left-brand .brand-logo {
+.site-header .sh-logo .brand-logo {
   overflow: visible;
 }
-.site-header .sh-logo .brand-logo img,
-.left-brand .brand-logo img {
+.site-header .sh-logo .brand-logo img {
   object-fit: contain;
 }
 @media (max-width: 374px) {
@@ -266,9 +245,7 @@ img { max-width: 100%; display: block; }
   color: var(--cocoa-soft);
   margin-left: 2px;
 }
-.site-header .sh-cta { margin-left: auto; }
 
-/* ハンバーガー */
 .hamburger {
   width: 44px; height: 44px;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -282,7 +259,6 @@ img { max-width: 100%; display: block; }
 .hamburger.is-open span:nth-child(2) { opacity: 0; }
 .hamburger.is-open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-/* ── ドロワー（左から）── */
 .drawer {
   position: fixed; top: 0; left: 0; height: 100dvh; width: min(82vw, 300px);
   background: var(--page); z-index: 110;
@@ -299,7 +275,6 @@ img { max-width: 100%; display: block; }
 .drawer-overlay.is-open { opacity: 1; pointer-events: auto; }
 .drawer-cta { display: grid; gap: 10px; margin-top: auto; }
 
-/* ── 左ナビ（PCサイドバー & ドロワー共通の中身）── */
 .l-nav ul { list-style: none; margin: 0; padding: 0; }
 .l-nav li { margin: 2px 0; }
 .l-nav a {
@@ -317,10 +292,6 @@ img { max-width: 100%; display: block; }
 }
 .l-nav a.lang { color: var(--leaf-green); }
 
-/* 左サイドの足元ミニCTA＋キウィ */
-.left-foot { margin-top: 14px; display: grid; gap: 10px; text-align: center; }
-
-/* ── 右レール（アイコン縦並び）── */
 .rail { display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .rail .rail-logo { margin-bottom: 4px; }
 .rail-sep { width: 40%; border: none; border-top: 1px solid var(--paper-edge); margin: 4px 0; }
@@ -337,7 +308,6 @@ img { max-width: 100%; display: block; }
   writing-mode: vertical-rl; letter-spacing: 0.1em;
 }
 
-/* ── FAB（モバイルのみ）── */
 .fab {
   position: fixed; right: 14px; bottom: 14px; z-index: 90;
   display: inline-flex; align-items: center; gap: 8px;
@@ -385,71 +355,7 @@ img { max-width: 100%; display: block; }
   object-fit: contain;
 }
 
-/* =========================================================
-   DESKTOP（>=1280px）：3カラム grid。中央は野原に置いた絵本のページ。
-   ========================================================= */
-@media (min-width: 1280px) {
-  .site-header, .fab, .drawer, .drawer-overlay { display: none !important; }
 
-  .site-grid {
-    display: grid;
-    grid-template-columns: var(--col-left) minmax(0, 1fr) var(--col-right);
-    gap: 22px;
-    width: min(1180px, 96%);
-    margin-inline: auto;
-    padding-block: 24px;
-    align-items: start;
-  }
-
-  /* 中央＝絵本のページ（白に近いクリーム・まる角・やわ影。テープ/傾きは使わない） */
-  .site-main {
-    width: 100%;
-    max-width: var(--col-main);
-    margin-inline: auto;
-    padding-top: 0;
-    background: var(--page);
-    border-radius: 28px;
-    border: 1px solid var(--paper-edge);
-    box-shadow: var(--shadow-page);
-    overflow: hidden;
-  }
-
-  /* 左サイドバー（やわらかい絵本ページ＝メモ。傾きなし） */
-  .site-left {
-    display: block;
-    position: sticky;
-    top: 24px;
-    max-height: calc(100dvh - 48px);
-    overflow-y: auto;
-    background: var(--page);
-    border-radius: 24px;
-    border: 1px solid var(--paper-edge);
-    box-shadow: var(--shadow-soft);
-    padding: 18px 12px;
-  }
-  .left-brand {
-    display: flex; align-items: center; gap: 8px;
-    padding: 4px 10px 14px; font-family: var(--font-pop); font-weight: 800; font-size: 1.05rem;
-    border-bottom: 1px dashed var(--paper-edge); margin-bottom: 10px;
-    justify-content: center;
-  }
-  .left-brand small {
-    display: inline; font-family: var(--font-round); font-size: 0.82rem;
-    letter-spacing: 0; color: var(--cocoa-soft); margin-left: 2px;
-  }
-
-  /* 右レール */
-  .site-right {
-    display: block;
-    position: sticky;
-    top: 24px;
-    padding: 8px 0;
-  }
-}
-
-/* =========================================================
-   prefers-reduced-motion
-   ========================================================= */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }

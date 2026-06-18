@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 // スクロールで .reveal を一度だけ .in にする。CSS 側でふわっと表示。
 // prefers-reduced-motion の人にはアニメを無効化し、即座に表示する（globals.css 側で担保）。
-export function useReveal() {
+export function useReveal(refreshKey?: unknown) {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
 
@@ -27,5 +27,5 @@ export function useReveal() {
 
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [refreshKey]);
 }

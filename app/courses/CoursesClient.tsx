@@ -175,7 +175,7 @@ export function CoursesClient() {
         :global(.common-card) h2 { font-size: 1.3rem; margin-bottom: 14px; text-align: center; }
         :global(.common-card) ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
         :global(.common-card) li { color: var(--cocoa-soft); font-weight: 500; }
-        .course-list { display: grid; gap: 28px; max-width: 820px; }
+        .course-list { display: grid; gap: 28px; max-width: 100%; }
         .course { scroll-margin-top: 90px; }
         .course-head { display: flex; gap: 16px; align-items: center; margin-bottom: 14px; }
         .course-head h2 { font-size: clamp(1.4rem, 4vw, 1.9rem); margin: 4px 0 2px; }
@@ -247,6 +247,45 @@ export function CoursesClient() {
         .steam-chip { background: rgb(var(--orange-rgb) / 0.16); color: var(--kiwi-orange); }
         :global(.steam-card) h2 { font-size: clamp(1.4rem, 4.4vw, 2rem); margin: 12px 0 14px; }
         :global(.steam-card) p { color: var(--cocoa-soft); max-width: 34em; margin: 0 auto 22px; }
+        @media (max-width: 640px) {
+          .price-wrap { overflow: visible; }
+          .price-table {
+            min-width: 0;
+            border: none;
+            background: transparent;
+          }
+          .price-table thead { display: none; }
+          .price-table,
+          .price-table tbody,
+          .price-table tr,
+          .price-table td {
+            display: block;
+            width: 100%;
+          }
+          .price-table tr {
+            margin-bottom: 14px;
+            overflow: hidden;
+            border: 1px solid rgb(var(--cocoa-rgb) / 0.08);
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 8px 22px rgb(var(--cocoa-rgb) / 0.08);
+          }
+          .price-table td {
+            display: grid;
+            grid-template-columns: minmax(7.5em, 42%) minmax(0, 1fr);
+            gap: 12px;
+            padding: 12px 14px;
+            border-bottom: 1px solid rgb(var(--cocoa-rgb) / 0.08);
+            font-size: 0.9rem;
+          }
+          .price-table td::before {
+            content: attr(data-label);
+            color: var(--cocoa-soft);
+            font-weight: 700;
+            font-size: 0.78rem;
+          }
+          .price-table td:last-child { border-bottom: none; }
+        }
       `}</style>
     </>
   );

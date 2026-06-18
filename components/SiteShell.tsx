@@ -1,10 +1,10 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { LINKS } from '@/lib/site';
 import { Nav } from './Nav';
-import { RightRail } from './RightRail';
 import { Footer } from './Footer';
 import { ImageSlot } from './ImageSlot';
 
@@ -75,9 +75,6 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             className="brand-logo"
           />
         </Link>
-        <Link href="/trial" className="btn btn-primary btn-sm sh-cta">
-          無料体験
-        </Link>
       </header>
 
       <div className={`drawer ${open ? 'is-open' : ''}`}>
@@ -99,30 +96,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       />
 
       <div className="site-grid">
-        <aside className="site-left">
-          <Link href="/" className="left-brand" aria-label="Hello Kiwiトップへ">
-            <ImageSlot
-              src="/assets/images/hero/Hello-Kiwilogo4.png"
-              label="Hello Kiwi logo"
-              alt="Hello Kiwi 英会話"
-              w={254}
-              h={45}
-              className="brand-logo"
-            />
-          </Link>
-          <Nav />
-          <div className="left-foot">
-            <Link href="/trial" className="btn btn-primary btn-sm">
-              無料体験に申し込む
-            </Link>
-          </div>
-        </aside>
-
         <div className="site-main">{children}</div>
-
-        <aside className="site-right">
-          <RightRail />
-        </aside>
       </div>
 
       <Footer currentPath={pathname ?? ''} />

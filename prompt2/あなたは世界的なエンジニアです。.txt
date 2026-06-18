@@ -1,182 +1,100 @@
 あなたは世界的なエンジニアです。
 以下の点、修正してください。
 
-①トップページの修正です
+①コース・料金ページの修正です。
+キッズABCから予定表までスマホでみたら大きすぎて右側が切れていて見えなくなっているのを直して
 
-Hello! はじめての英語でも大丈夫を消して
+➁お知らせ・NZコラムページの修正です
+すべて　お知らせ　イベント　NZコラムのところを押したらその記事が表示されるようにして
+（今はお知らせを押しても何も表示されていない、他のも一緒です）
 
-ヘッダーの左上の画像とHello kiwi英会話をけして下の画像にして
-C:\dev\Hello-kiwi-main\public\assets\images\hero　のHello-Kiwilogo4.png
+③全体の修正です
+画面サイズが大きいPCのときに、ホームページがスマホのように中央に細長く寄ってしまい、左右に巨大な余白ができてしまいます。
+画面を少し小さくすると（中くらいのサイズ）、理想の2カラムレイアウト（2つ目の横並びの状態）になります。
 
-Hello! はじめての英語でも大丈夫の下の画像をの白い背景なしにして画像だけwide100％で貼って
+大画面PC（lgやxl、2xlサイズ）のときでも、スマホ風に潰れず、中サイズと同じように横に広がったレイアウトを維持できるように、コンテナの最大幅（max-width）やレスポンシブの設定を修正してください。
 
-ニュージーランド育ちのバイリンガル講師と、1対1のプライベートレッスン。をニュージーランド育ちの講師と、1対1のプライベートレッスン。に変えて
+特に関連していそうな、全体を囲っているラッパー（containerやmax-w-xxxの指定がある部分）のコードを直したいです。
 
-Which one are you?
-あなたに合う入口へ
-小学生
-はじめての英語を楽しく
-→
-大人・やり直し
-日常会話・旅行英語をマイペースに
-のところ全部消して
+④Englishページの修正です
+左上のキャラクターは消して
+Welcome to Hello Kiwiの下に下の画像入れて
+C:\dev\Hello-kiwi-main\public\assets\images\hero　のhero-main.jpan.png
 
-Hello Kiwi英会話の特徴の3つを🥝じゃなくて数字にして1.2.3で色変えて
+Learn with joy, and your world opens up.をLearn Japanese. Experience Japan. Connect Cultures.に変えて
 
-小学生
-はじめての英語を楽しく
-大人・やり直し
-日常会話・旅行英語をマイペースに　を縦じゃなくて横に並べて2カラムにして
+English conversation taught by a bilingual Japanese teacher who grew up in New Zealand — starting from zero English. Beginner-friendly and fully 1-on-1.をKia Ora! I’m Nobu, the founder of Hello Kiwi.
 
+I was born in Japan but grew up in New Zealand from a young age. After spending many years living, studying, and working in New Zealand, I have now returned to Japan and currently live in Osaka.
 
-お知らせ・NZコラム
+Because I understand both Japanese and New Zealand culture, I created Hello Kiwi to help people enjoy language learning and cultural experiences in a relaxed and practical way.
 
+Whether you’re looking to improve your English skills or explore Japan with a local guide, I’m here to help.に変えて
 
-まずは、無料体験から。のところの左にいるキャラクターを下の画像に変えて、アニメ―ショーンは同じようにして(ほかに出てくる体験案内全部ね)
-C:\dev\Hello-kiwi-main\public\assets\images\hero　のkiwi.png
+その下にLearn More About Meのボタン追加、リンクはhttps://www.hiddenjapanworld.com/about-hidden-japan-world/
 
-アクセスのところのInstagramは消して
-グーグルマップ埋め込んで(アクセスページみたいにして)　サイズはお任せします
-<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3282.8234017745867!2d135.59956009678956!3d34.6339028!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60012152f35bd669%3A0xd0841453474c4f89!2zSGVsbG8gS2l3aSDoi7HkvJroqbE!5e0!3m2!1sja!2sus!4v1781742576779!5m2!1sja!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+About the teacherをJapanese Lessons Designed Around Youに変えて
 
-footerにも
-Hello Kiwiの上の画像は丸で囲まないで画像そのまま貼って
+Born in Tokyo, our teacher moved to New Zealand at age 6 — understanding not a single word of English. Through gestures, smiles and real friendships, they discovered that connection comes before perfection. That experience is the heart of every lesson here.
 
+“Because I started from zero, I understand exactly how a beginner feels.”を
+Everyone learns differently, and that’s okay! At Hello Kiwi Japanese, I offer both online and in-class lessons that are completely tailored to you. Together, we’ll focus on what matters most to you!
 
-③Hello kiwiについてのページの修正
+Whether that’s speaking confidently, understanding Japanese culture, preparing for exams, or getting ready for your next adventure in Japan.
 
-東京で生まれました。
-6歳まで東京で暮らしていました。
-家族でニュージーランドへ移住しました。
-当時の英語力はゼロで、まわりの言葉がまったく理解できませんでした。を
+Let’s make learning Japanese enjoyable, practical, and meaningful for you.に変えて
 
+その下に
+Book a free trial　(リンクhttps://tidycal.com/nobutakasatons/30-minute)
+日本語サイトへ →(リンクhttps://www.hellokiwieikaiwa.com/)ボタンを持ってきて
 
-東京で生まれて6歳まで暮らしていましたが、その後、家族でニュージーランドへ移住しました。当時は英語力がゼロだったので、まわりの言葉がまったく理解できませんでした。
-に変えて
+Coursesを100-Minute Japanese Travel Courseに変えて(ちょっと文字小さく)
+その下にしたの文章入れて
+Visiting Japan soon?
+This practical 100-minute course is designed for travellers who want to learn useful Japanese before or during their trip.
+Instead of focusing on grammar rules and textbooks, you'll learn phrases that you can use immediately while exploring Japan.
+Topics may include:
 
-学校で、同じように英語がまったく話せないポルトガル人のクラスメイトと出会いました。
-言葉はお互いに分かりませんでしたが、自然と仲良くなりました。
-身ぶり手ぶりや笑顔でコミュニケーションをとるうちに、言葉の壁を越えて親友になりました。
-お互いに助け合い、いっしょに英語を練習していくことで、少しずつ話せるようになっていきました。
-その後、中学校に進学しました。そこでも新しい友達を作りながら、挑戦を続けました。
-高校へ進学し、さらに新しい環境で大きな夢を持つようになりました。
-2011年、ニュージーランドで大地震（カンタベリー地震）が起き、自宅が大きな被害を受けました。
-すべてを置いて、母親の友人がいるネルソンという街へ一時的に引っ越し、そこからまた新しい生活をスタートさせました。を
+この下の文章はちょっと目立たせて
+・reetings and introductions
+・Ordering food and drinks
+・Shopping and payments
+・Asking for directions
+・Using trains and public transport
+・Checking into hotels
+・Useful phrases for everyday travel
 
-学校では、自分と同じように英語がまったく話せないポルトガル人のクラスメイトと出会いました。お互いに言葉は分かりませんでしたが、身ぶり手ぶりや笑顔でコミュニケーションをとるうちに自然と仲良くなり、言葉の壁を越えて親友になりました。そこからはお互いに助け合い、いっしょに英語を練習していくことで、少しずつ話せるようになっていきました。
+この下の文章は普通に
+The lesson is fully customised to your travel plans, destination, and Japanese level.
+Whether you're visiting Osaka, Tokyo, Kyoto, or travelling around Japan, you'll leave with practical Japanese that you can use straight away.
 
-その後、中学校に進学してからも新しい友達を作りながら挑戦を続け、高校へ進学すると、さらに新しい環境の中で大きな夢を持つようになりました。
+ここにボタン追加
+Learn More(リンクhttps://www.hellokiwieikaiwa.com/Real-Japanese/)
 
-しかし2011年、ニュージーランドで大地震（カンタベリー地震）が起き、自宅が大きな被害を受けてしまいました。そのため、すべてを置いて母親の友人がいるネルソンという街へ一時的に引っ越すことになり、そこからまた新しい生活をスタートさせました。に変えて
+courseと同じ大きさで
+Osaka Tour Guide
+この下に文章入れて
+Planning a trip to Osaka?
+I offer local guiding services around Osaka and nearby areas, helping visitors experience Japan beyond the typical tourist attractions.
 
-高校ではサッカー部に入り、チームワークや諦めない大切さを学びました。
-初めてのアルバイトはファストフード店（Fry）で、働く責任感を学びました。
-カンタベリー大学に進学し、新しくコンピューターサイエンスの勉強を始めました。
-大学でもたくさんの友人に恵まれ、今でも連絡を取り合う大切な仲間ができました。
-学費や生活費のために、学生をしながらバスの運転手のアルバイトも経験しました。
-大学卒業後は、そのままバス会社の運行管理（コントロールセンターの業務）として働きました。
-その後、休暇で初めて日本を訪れ、日本の文化や街並みが一気に大好きになりました。
-ニュージーランドに帰国後、日本へ行くという新しい夢のために、毎日コツコツ日本語を猛勉強しました。
-そして現在、日本で語学教師として、初めて英語を学ぶ生徒さんたちをサポートしています。を
+Instead of joining a large tour group, you’ll explore with someone who understands both Japanese culture and the perspective of international visitors. Having lived in both New Zealand and Japan, I can help bridge the cultural gap and make your trip more comfortable and enjoyable.
 
-高校ではサッカー部に入り、チームワークや諦めない大切さを学びました。また、初めてのアルバイトとしてファストフード店で働き、働くことへの責任感も身につけました。
+I can help you:
 
-その後、カンタベリー大学に進学し、新しくコンピューターサイエンスの勉強を始めました。大学でもたくさんの友人に恵まれ、今でも連絡を取り合う大切な仲間ができました。在学中は、学費や生活費のために学生をしながらバスの運転手のアルバイトも経験し、大学卒業後は、そのままバス会社の運行管理としてコントロールセンターの業務に就きました。
+・Explore local neighbourhoods
+・Visit popular sightseeing spots
+・Learn how to use Osaka’s trains and public transportation
+・Experience everyday Japan beyond typical tourist destinations
+・Understand Japanese customs and culture
 
-その後、休暇で初めて日本を訪れた際、日本の文化や街並みが一気に大好きになりました。ニュージーランドに帰国してからは、「日本へ行く」という新しい夢のために、毎日コツコツと日本語を猛勉強しました。
+Whether it’s your first visit to Japan or your fifth, I’d love to help you discover Osaka with confidence and create lasting memories along the way.
 
-そして現在、日本で語学教師として、かつての自分と同じように初めて英語を学ぶ生徒さんたちをサポートしています。に変えて
+Not sure yet?
 
-1対1だから、自分のペースで一歩ずつ
-完璧な英語を話そうとしなくて大丈夫です。言葉に詰まっても、単語を並べるだけでも問題ありません。 あなたの理解度やペースに合わせて、最初の一歩を丁寧にサポートします。の下に、下の動画いれて
-https://youtu.be/Wbbu2HKMNdo?si=gtF1zVvi7r-oO0YZ
+Book a free 30-minute consultation and let’s talk about your goals, travel plans, and how Hello Kiwi can help.
 
-④コース・料金ページの修正
-
-キッズABCの文章の　歌・絵本・ジェスチャーで、耳から自然に英語に親しむ
-「正しさ」より「楽しい！」を最優先。間違えても大丈夫
-バイリンガル講師が日本語でも寄り添うから、初めてでも安心を消して
-
-キッズ英会話の　自分のことを伝えるフレーズ
-会話がはずむ日常単語
-一歩ふみ込んだ英会話
-実践的なシチュエーション練習を消して
-
-大人の英会話の　自分のことを伝えるフレーズ
-会話がはずむ日常単語
-一歩ふみ込んだ英会話
-実践的なシチュエーション練習を消して
-
-料金のところの料金の文字サイズをおおきくして
-個人・ペアレッスンを1回に変えて
-回数・時間を時間に変えて
-1回50分程度を50分に
-
-料金の下に予定表を追加
-予定表(大きく)
-通いたいときに、学べる分だけ。
-画像　C:\dev\Hello-kiwi-main\public\assets\images　schedule5-7.jpg
-その下に文字入れて　スケジュールに縛られず、行きたいときに予約して学べます。
-固定の曜日はありません。「いま学びたい」「時間ができた」というタイミングでその都度予約して、自分のペースで自由に続けられます。
-
-（7月末まで無料キャンペーン中）を赤字に変えて
-
-特別価格の対象：キープオンラボ、またはエジソンアカデミー本校の受講生のところの
-キープオンラボのリンクをhttps://keeponlabo.com/にエジソンアカデミー本校のリンク先をhttps://www.keeponlearning.fun/に追加して
-
-コース紹介と料金ページを同じにしたいから、コース紹介のページをコース・料金に変えて、料金ページは消して
-大人の英会話の下に料金を入れたい
-料金ページをそのまま入れて
-スクール生特別価格は1回2750円だけやから16,500円（1回2,750円）こういう書きかたしないで、真ん中に2750円だけにして
-
-➇お知らせ・ブログページの修正
-
-内容は
-https://www.hellokiwieikaiwa.com/blog/　これみて
-新しい順に全部いれて！！入ってない内容追加しないで
-
-
-⑨アクセスページの修正
-（キープオンラボ）と同じ場所です。のキープオンラボにリンク入れて
-https://keeponlabo.com/
-
-https://keeponlabo.com/#access　これと同じ感じにして
-
-電車でお越しの方
-
-近鉄八尾駅より北へ徒歩約8分で行けます！
-
-目印
-
-アリオ北西出口の光町交差点から2軒目の白いビルの4階。おとなりが焼肉屋「和牛亭 仁」さん、お向かいがお寿司屋「福寿司」さんで、建物の右端に階段があります。
-
-お車でお越しの方
-
-駐車場はございませんので、近くのコインパーキングをご利用ください。
-
-自転車でお越しの方
-
-裏側の「魚べい」さん1階の駐輪場へ無料で止めることが出来ます。
-
-その上に教室の写真をいれたい2枚
-1枚目　C:\dev\Hello-kiwi-main\public\assets\images\school　のschool1.jpg
-2枚目　C:\dev\Hello-kiwi-main\public\assets\images\school　のschool2.jpg
-
-⑩お問い合わせページの修正
-お問い合わせの左にいるキャラクターを下の画像に変えて(アニメーションとサイズは同じように)
-C:\dev\Hello-kiwi-main\public\assets\images\hero　のkiwi3.png
-
-教室の様子はInstagramからのインスタグラムを小さくアイコン画像にして
-C:\dev\Hello-kiwi-main\public\assets\images\Instagram　のInstagram_icon.png
-
-⑫フッターの修正
-
-hello kiwi 英会話の上のキャラクターの画像をこれにかえて(丸で囲まないで)
-C:\dev\Hello-kiwi-main\public\assets\images\hero　のkiwi2.png
-フッターmenuの下に
-インスタグラムを小さくアイコン画像にして
-C:\dev\Hello-kiwi-main\public\assets\images\Instagram　のInstagram_icon.png
-リンクはhttps://www.instagram.com/hellokiwi.english/
+この下にボタン
+Book a Free Consultation(リンクhttps://tidycal.com/nobutakasatons/30-minute)
 
 
 
