@@ -223,7 +223,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-pop);
   font-weight: 800;
   font-size: 1.1rem;
-  flex: 0 0 196px;
+  flex: 0 1 236px;
   min-width: 0;
 }
 .site-header .sh-logo .brand-logo {
@@ -232,9 +232,31 @@ img { max-width: 100%; display: block; }
 .site-header .sh-logo .brand-logo img {
   object-fit: contain;
 }
+.header-trial {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--kiwi-orange);
+  color: #fff;
+  box-shadow: 0 8px 20px rgb(var(--orange-rgb) / 0.3);
+  font-family: var(--font-round);
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
 @media (max-width: 374px) {
   .site-header .sh-logo {
-    flex-basis: 176px;
+    flex-basis: 192px;
+  }
+  .header-trial {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.78rem;
   }
 }
 .site-header .sh-logo small {

@@ -233,8 +233,13 @@ export function CoursesClient() {
         :global(.schedule) h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); margin-bottom: 8px; }
         :global(.schedule) > p { color: var(--cocoa); font-weight: 800; margin: 0 0 20px; }
         :global(.schedule-img) { border-radius: 16px; box-shadow: var(--shadow-soft); }
-        .schedule-copy { margin-top: 20px; color: var(--cocoa-soft); }
-        .schedule-copy p { margin: 0 auto 10px; max-width: 38em; }
+        .schedule-copy {
+          margin: 20px auto 0;
+          max-width: 38em;
+          color: var(--cocoa-soft);
+          text-align: left;
+        }
+        .schedule-copy p { margin: 0 0 10px; }
         :global(.steam-card) {
           max-width: 760px;
           margin: 0 auto;

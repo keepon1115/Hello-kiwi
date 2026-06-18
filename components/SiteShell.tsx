@@ -70,10 +70,13 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             src="/assets/images/hero/Hello-Kiwilogo4.png"
             label="Hello Kiwi logo"
             alt="Hello Kiwi 英会話"
-            w={196}
-            h={35}
+            w={236}
+            h={42}
             className="brand-logo"
           />
+        </Link>
+        <Link href="/trial" className="header-trial">
+          無料体験
         </Link>
       </header>
 

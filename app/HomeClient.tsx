@@ -177,6 +177,9 @@ export function HomeClient() {
         :global(.bmini) h3 { font-size: 1rem; margin: 6px 0 0; }
         .center-link { text-align: center; margin-top: 28px; }
         @container (max-width: 679px) {
+          .hero {
+            padding-top: 0;
+          }
           :global(.hero-art) {
             width: calc(100% + 40px);
             max-width: none;
