@@ -1,0 +1,458 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   Hello Kiwi デザインシステム  ―  コンセプト「Hello, World. 世界へのとびら」
+   カラーの単一ソースはこの :root。Tailwind は RGB トリプレットを参照する。
+   役割固定：オレンジ＝行動 / グリーン＝信頼 / イエロー＝楽しさ。
+   レイアウト：モバイル基準＋PCは「野原(field)に置いた絵本のページ(page)」を中央に。
+   ========================================================= */
+:root {
+  /* ── Brand 5色（キッズ＝高彩度デフォルト）── */
+  --kiwi-orange: #ee6c2b;
+  --orange-rgb: 238 108 43;
+  --leaf-green: #7cb342;
+  --green-rgb: 124 179 66;
+  --sunny-yellow: #ffde59;
+  --yellow-rgb: 255 222 89;
+  --cream: #faf5ea;
+  --cream-rgb: 250 245 234;
+  --cocoa: #5a4329;
+  --cocoa-rgb: 90 67 41;
+
+  /* 文字の濃淡 */
+  --cocoa-soft: #7a6650;
+  --cocoa-faint: #a6968a;
+
+  /* ── 地と紙（今回の追加）── */
+  --page: #fffdf7; /* 中央＝絵本のページ（白に近いクリーム） */
+  --field: #faf5ea; /* 左右の地＝野原 */
+  --field-deep: #f1e9d6; /* 野原の影・帯 */
+  --paper-edge: rgba(90, 67, 41, 0.1);
+
+  /* フォント（next/font が変数を供給。フォールバックを添える） */
+  --font-round: 'Zen Maru Gothic', system-ui, sans-serif;
+  --font-body: 'Noto Sans JP', system-ui, sans-serif;
+  --font-pop: 'Baloo 2', system-ui, sans-serif;
+
+  --shadow-soft: 0 10px 30px rgba(90, 67, 41, 0.1);
+  --shadow-lift: 0 16px 40px rgba(90, 67, 41, 0.16);
+  --shadow-page: 0 18px 50px -18px rgba(90, 67, 41, 0.28);
+
+  /* レイアウト寸法 */
+  --col-main: 480px; /* 中央カラム幅（合意：CLAFT同様480px固定） */
+  --col-left: 290px;
+  --col-right: 104px;
+  --header-h: 64px;
+}
+
+/* ── 大人/シニア向けページ：同じ5色を彩度だけ落とす ── */
+[data-tone='adult'] {
+  --kiwi-orange: #c9663b;
+  --orange-rgb: 201 102 59;
+  --leaf-green: #8a9a6b;
+  --green-rgb: 138 154 107;
+  --sunny-yellow: #e3c36b;
+  --yellow-rgb: 227 195 107;
+  --font-round: var(--font-body);
+}
+
+/* ========================= base ========================= */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  background-color: var(--field);
+  /* 野原の極薄ドット（絵本感。うるさくならない程度） */
+  background-image: radial-gradient(rgb(var(--green-rgb) / 0.05) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+  color: var(--cocoa);
+  font-family: var(--font-body);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-round);
+  color: var(--cocoa);
+  line-height: 1.4;
+  font-weight: 700;
+  margin: 0;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+:focus-visible {
+  outline: 3px solid var(--kiwi-orange);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ========================= layout helpers ========================= */
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section { padding: clamp(44px, 8vw, 72px) 0; }
+
+.eyebrow {
+  font-family: var(--font-pop);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--kiwi-orange);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+/* セクション見出し：グリーンの安心 + イエロー下線（楽しさ） */
+.section-heading { text-align: center; margin-bottom: clamp(28px, 5vw, 44px); }
+.section-heading h2 {
+  font-size: clamp(1.5rem, 6cqi, 2.1rem);
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.3em;
+}
+.section-heading h2::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  height: 0.3em;
+  background: rgb(var(--yellow-rgb));
+  border-radius: 999px;
+  z-index: -1;
+}
+.section-heading p { margin: 0.8em auto 0; max-width: 32em; color: var(--cocoa-soft); }
+
+/* ========================= buttons ========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-family: var(--font-round);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.85em 1.5em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  background: var(--kiwi-orange);
+  color: #fff;
+  box-shadow: 0 8px 20px rgb(var(--orange-rgb) / 0.35);
+}
+.btn-primary:hover { box-shadow: 0 12px 26px rgb(var(--orange-rgb) / 0.45); }
+.btn-line { background: #06c755; color: #fff; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.3); }
+.btn-line:hover { box-shadow: 0 12px 26px rgba(6, 199, 85, 0.4); }
+.btn-ghost { background: #fff; color: var(--cocoa); box-shadow: var(--shadow-soft); }
+.btn-lg { font-size: 1.05rem; padding: 1em 1.9em; }
+.btn-sm { font-size: 0.85rem; padding: 0.6em 1.1em; }
+
+/* ========================= cards / chips ========================= */
+.card {
+  background: #fff;
+  border-radius: 26px;
+  padding: clamp(20px, 5cqi, 30px);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgb(var(--cocoa-rgb) / 0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.card-hover:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  background: rgb(var(--green-rgb) / 0.14);
+  color: color-mix(in srgb, var(--leaf-green) 78%, var(--cocoa));
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.32em 0.85em;
+  border-radius: 999px;
+}
+
+/* ========================= reveal / animation ========================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.floaty { animation: floaty 6s ease-in-out infinite; }
+.floaty-slow { animation: floaty 9s ease-in-out infinite; }
+
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+/* =========================================================
+   SITE SHELL ― モバイル基準 / PCは3カラム
+   ========================================================= */
+
+/* 既定（モバイル）：ヘッダー固定、左右レールは隠す、中央は全幅 */
+.site-grid { display: block; }
+.site-left, .site-right { display: none; }
+.site-main {
+  width: 100%;
+  container-type: inline-size;
+  container-name: main;
+  padding-top: var(--header-h);
+}
+
+/* ── モバイルヘッダー ── */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: rgb(var(--cream-rgb) / 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--paper-edge);
+}
+.site-header .sh-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pop);
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex: 0 0 196px;
+  min-width: 0;
+}
+.site-header .sh-logo .brand-logo,
+.left-brand .brand-logo {
+  overflow: visible;
+}
+.site-header .sh-logo .brand-logo img,
+.left-brand .brand-logo img {
+  object-fit: contain;
+}
+@media (max-width: 374px) {
+  .site-header .sh-logo {
+    flex-basis: 176px;
+  }
+}
+.site-header .sh-logo small {
+  display: inline;
+  font-family: var(--font-round);
+  font-size: 0.82rem;
+  letter-spacing: 0;
+  color: var(--cocoa-soft);
+  margin-left: 2px;
+}
+.site-header .sh-cta { margin-left: auto; }
+
+/* ハンバーガー */
+.hamburger {
+  width: 44px; height: 44px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; border: none; background: transparent; cursor: pointer;
+}
+.hamburger span {
+  width: 24px; height: 2.5px; background: var(--cocoa); border-radius: 2px;
+  transition: transform 0.25s, opacity 0.2s;
+}
+.hamburger.is-open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ── ドロワー（左から）── */
+.drawer {
+  position: fixed; top: 0; left: 0; height: 100dvh; width: min(82vw, 300px);
+  background: var(--page); z-index: 110;
+  transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 6px 0 30px rgba(90, 67, 41, 0.18);
+  padding: 18px 16px 24px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.drawer.is-open { transform: translateX(0); }
+.drawer-overlay {
+  position: fixed; inset: 0; background: rgba(90, 67, 41, 0.42); border: none;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 105;
+}
+.drawer-overlay.is-open { opacity: 1; pointer-events: auto; }
+.drawer-cta { display: grid; gap: 10px; margin-top: auto; }
+
+/* ── 左ナビ（PCサイドバー & ドロワー共通の中身）── */
+.l-nav ul { list-style: none; margin: 0; padding: 0; }
+.l-nav li { margin: 2px 0; }
+.l-nav a {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 11px 12px; border-radius: 14px;
+  font-family: var(--font-round); font-weight: 700; font-size: 0.95rem;
+  color: var(--cocoa); transition: background 0.15s, color 0.15s;
+}
+.l-nav a .en {
+  font-family: var(--font-pop); font-size: 0.64rem; color: var(--cocoa-faint); font-weight: 600;
+}
+.l-nav a:hover { background: rgb(var(--green-rgb) / 0.12); }
+.l-nav a[aria-current='page'] {
+  background: rgb(var(--yellow-rgb) / 0.35); color: var(--kiwi-orange);
+}
+.l-nav a.lang { color: var(--leaf-green); }
+
+/* 左サイドの足元ミニCTA＋キウィ */
+.left-foot { margin-top: 14px; display: grid; gap: 10px; text-align: center; }
+
+/* ── 右レール（アイコン縦並び）── */
+.rail { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.rail .rail-logo { margin-bottom: 4px; }
+.rail-sep { width: 40%; border: none; border-top: 1px solid var(--paper-edge); margin: 4px 0; }
+.rail-ico {
+  width: 46px; height: 46px; display: grid; place-items: center;
+  border-radius: 50%; background: #fff; box-shadow: var(--shadow-soft);
+  font-size: 1.2rem; transition: transform 0.18s, box-shadow 0.18s;
+}
+.rail-ico:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+.rail-ico.is-cta { background: var(--kiwi-orange); color: #fff; }
+.rail-ico.is-line { background: #06c755; color: #fff; }
+.rail-label {
+  font-family: var(--font-pop); font-size: 0.6rem; color: var(--cocoa-faint);
+  writing-mode: vertical-rl; letter-spacing: 0.1em;
+}
+
+/* ── FAB（モバイルのみ）── */
+.fab {
+  position: fixed; right: 14px; bottom: 14px; z-index: 90;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #06c755; color: #fff; font-family: var(--font-round); font-weight: 700;
+  padding: 12px 18px; border-radius: 999px; box-shadow: var(--shadow-lift);
+}
+.page-top {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 91;
+  width: 66px;
+  height: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--shadow-lift);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.page-top-label {
+  font-family: var(--font-round);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--kiwi-orange);
+}
+.page-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.page-top .page-top-img {
+  overflow: visible;
+}
+.page-top .page-top-img img {
+  object-fit: contain;
+}
+
+/* =========================================================
+   DESKTOP（>=1280px）：3カラム grid。中央は野原に置いた絵本のページ。
+   ========================================================= */
+@media (min-width: 1280px) {
+  .site-header, .fab, .drawer, .drawer-overlay { display: none !important; }
+
+  .site-grid {
+    display: grid;
+    grid-template-columns: var(--col-left) minmax(0, 1fr) var(--col-right);
+    gap: 22px;
+    width: min(1180px, 96%);
+    margin-inline: auto;
+    padding-block: 24px;
+    align-items: start;
+  }
+
+  /* 中央＝絵本のページ（白に近いクリーム・まる角・やわ影。テープ/傾きは使わない） */
+  .site-main {
+    width: 100%;
+    max-width: var(--col-main);
+    margin-inline: auto;
+    padding-top: 0;
+    background: var(--page);
+    border-radius: 28px;
+    border: 1px solid var(--paper-edge);
+    box-shadow: var(--shadow-page);
+    overflow: hidden;
+  }
+
+  /* 左サイドバー（やわらかい絵本ページ＝メモ。傾きなし） */
+  .site-left {
+    display: block;
+    position: sticky;
+    top: 24px;
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+    background: var(--page);
+    border-radius: 24px;
+    border: 1px solid var(--paper-edge);
+    box-shadow: var(--shadow-soft);
+    padding: 18px 12px;
+  }
+  .left-brand {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 10px 14px; font-family: var(--font-pop); font-weight: 800; font-size: 1.05rem;
+    border-bottom: 1px dashed var(--paper-edge); margin-bottom: 10px;
+    justify-content: center;
+  }
+  .left-brand small {
+    display: inline; font-family: var(--font-round); font-size: 0.82rem;
+    letter-spacing: 0; color: var(--cocoa-soft); margin-left: 2px;
+  }
+
+  /* 右レール */
+  .site-right {
+    display: block;
+    position: sticky;
+    top: 24px;
+    padding: 8px 0;
+  }
+}
+
+/* =========================================================
+   prefers-reduced-motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .floaty, .floaty-slow { animation: none !important; }
+  .btn:hover, .card-hover:hover { transform: none; }
+}
