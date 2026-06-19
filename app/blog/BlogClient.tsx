@@ -25,7 +25,6 @@ export function BlogClient({ posts }: { posts: NotePost[] }) {
         <div className="container reveal">
           <p className="eyebrow">Blog &amp; News</p>
           <h1>お知らせ・NZコラム</h1>
-          <p className="lead">noteで更新している最新記事を自動で表示しています。</p>
         </div>
       </section>
 
