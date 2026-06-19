@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { HomeClient } from './HomeClient';
+import { getNotePosts } from '@/lib/note';
+
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: 'Hello Kiwi 英会話 ｜ 近鉄八尾・オンライン',
@@ -8,6 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' }
 };
 
-export default function HomePage() {
-  return <HomeClient />;
+export default async function HomePage() {
+  const posts = await getNotePosts(3);
+  return <HomeClient posts={posts} />;
 }

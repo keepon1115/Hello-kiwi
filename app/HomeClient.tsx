@@ -6,9 +6,9 @@ import { CTASection } from '@/components/CTASection';
 import { Reveal } from '@/components/Reveal';
 import { ImageSlot } from '@/components/ImageSlot';
 import { COURSES } from '@/lib/data/courses';
-import { POSTS } from '@/lib/data/posts';
+import type { NotePost } from '@/lib/note';
 
-export function HomeClient() {
+export function HomeClient({ posts }: { posts: NotePost[] }) {
   return (
     <>
       <section className="hero">
@@ -107,8 +107,8 @@ export function HomeClient() {
         <div className="container">
           <SectionHeading eyebrow="Blog & News" title="お知らせ・NZコラム" />
           <div className="blog-list">
-            {POSTS.slice(0, 3).map((p, i) => (
-              <Reveal key={p.slug} delay={((i % 3) + 1) as 1 | 2 | 3}>
+            {posts.map((p, i) => (
+              <Reveal key={p.id} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="card card-hover bmini">
                   <div>
                     <span className="chip">{p.category}</span>
@@ -119,6 +119,9 @@ export function HomeClient() {
               </Reveal>
             ))}
           </div>
+          {posts.length === 0 && (
+            <p className="blog-empty">最新記事を読み込めませんでした。少し時間をおいて再度ご確認ください。</p>
+          )}
           <div className="center-link">
             <Link href="/blog" className="btn btn-ghost">
               すべての記事を見る →
@@ -175,6 +178,7 @@ export function HomeClient() {
         :global(.bmini) { display: block; }
         :global(.bmini) time { display: block; color: var(--cocoa-faint); font-size: 0.78rem; margin-top: 8px; }
         :global(.bmini) h3 { font-size: 1rem; margin: 6px 0 0; }
+        .blog-empty { color: var(--cocoa-soft); margin: 0; text-align: center; }
         .center-link { text-align: center; margin-top: 28px; }
         @container (max-width: 679px) {
           .hero {

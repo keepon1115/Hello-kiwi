@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { BlogClient } from './BlogClient';
+import { getNotePosts } from '@/lib/note';
+
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: 'お知らせ・NZコラム',
@@ -8,6 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/blog' }
 };
 
-export default function BlogPage() {
-  return <BlogClient />;
+export default async function BlogPage() {
+  const posts = await getNotePosts();
+  return <BlogClient posts={posts} />;
 }

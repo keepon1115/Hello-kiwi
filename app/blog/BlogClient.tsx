@@ -1,22 +1,23 @@
 'use client';
+
 import { useState } from 'react';
-import { useReveal } from '@/lib/useReveal';
-import { POSTS } from '@/lib/data/posts';
 import { Reveal } from '@/components/Reveal';
+import type { NotePost } from '@/lib/note';
+import { useReveal } from '@/lib/useReveal';
 
 const CATEGORY_TABS = [
   { id: 'すべて', label: 'すべて' },
   { id: 'お知らせ', label: 'お知らせ' },
-  { id: 'イベント', label: 'イベント' },
   { id: 'NZコラム', label: 'NZコラム' }
 ] as const;
 
 type CategoryId = (typeof CATEGORY_TABS)[number]['id'];
 
-export function BlogClient() {
+export function BlogClient({ posts }: { posts: NotePost[] }) {
   const [cat, setCat] = useState<CategoryId>('すべて');
   useReveal(cat);
-  const list = cat === 'すべて' ? POSTS : POSTS.filter((p) => p.category === cat);
+
+  const list = cat === 'すべて' ? posts : posts.filter((p) => p.category === cat);
 
   return (
     <>
@@ -24,7 +25,7 @@ export function BlogClient() {
         <div className="container reveal">
           <p className="eyebrow">Blog &amp; News</p>
           <h1>お知らせ・NZコラム</h1>
-          <p className="lead">教室のお知らせと、ニュージーランドの文化や英語にまつわるコラムをお届けします。</p>
+          <p className="lead">noteで更新している最新記事を自動で表示しています。</p>
         </div>
       </section>
 
@@ -46,7 +47,7 @@ export function BlogClient() {
 
           <div className="post-grid">
             {list.map((p, i) => (
-              <Reveal key={p.slug} delay={((i % 3) + 1) as 1 | 2 | 3}>
+              <Reveal key={p.id} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="card card-hover post">
                   <div className="post-meta">
                     <span className="chip">{p.category}</span>
@@ -61,7 +62,9 @@ export function BlogClient() {
           </div>
           {list.length === 0 && (
             <p className="empty-message">
-              現在、このカテゴリーの記事はありません。
+              {posts.length === 0
+                ? '現在、記事を読み込めませんでした。少し時間をおいて再度ご確認ください。'
+                : '現在、このカテゴリーの記事はありません。'}
             </p>
           )}
         </div>

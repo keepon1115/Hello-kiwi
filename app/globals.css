@@ -249,6 +249,14 @@ img { max-width: 100%; display: block; }
   line-height: 1;
   white-space: nowrap;
 }
+@media (min-width: 768px) {
+  .header-trial {
+    min-height: 48px;
+    padding: 0 24px;
+    font-size: 1rem;
+    box-shadow: 0 10px 24px rgb(var(--orange-rgb) / 0.34);
+  }
+}
 @media (max-width: 374px) {
   .site-header .sh-logo {
     flex-basis: 192px;
