@@ -33,10 +33,14 @@ npm run build
 app/                 各ページ（page.tsx + *Client.tsx）
   layout.tsx         フォント・metadata・LocalBusiness JSON-LD・<SiteShell>
   globals.css        デザインシステム＋シェル（カラートークン・3カラム・reveal/アニメ）
+<<<<<<< HEAD
   sitemap.ts / robots.ts / not-found.tsx
   page.tsx           トップ
   about/ courses/ trial/ blog/ blog/[slug]/ access/ faq/ contact/  各ページ
   en/                English版ランディング（NAVには未掲載）
+=======
+  sitemap.ts / robots.ts
+>>>>>>> 53d3e65035159a569ab8fe7c5650719f07105442
 components/
   SiteShell.tsx      3カラム外枠（モバイルヘッダー/ドロワー/FAB・reveal）
   Nav.tsx            左サイド＆ドロワー共用ナビ
@@ -46,6 +50,7 @@ components/
   AgeSelector / FeatureCards / CTASection / Accordion
 lib/
   site.ts            外部リンク・連絡先・ナビ（単一ソース）
+<<<<<<< HEAD
   note.ts            note.com RSS取得＋パース（お知らせ・NZコラムの実データ元）
   useReveal.ts       スクロール出現フック（SiteShell が主、保険として残置）
   data/              courses / pricing / faq / story（将来 microCMS/MDX へ差し替え前提）
@@ -55,6 +60,13 @@ public/assets/images/  画像一式（→ ASSETS.md に差し込みガイド）
 `/blog` は `lib/note.ts`（`getNotePosts`）経由で note.com の RSS（10分キャッシュ）を直接取得・表示する。
 `lib/data/posts.ts` と `blog/[slug]/ArticleClient.tsx` は旧・静的記事方式の名残で、`blog/[slug]/page.tsx` は現在 `/blog` へ即リダイレクトするため未使用（削除候補）。
 
+=======
+  useReveal.ts       スクロール出現フック（SiteShell が主、保険として残置）
+  data/              courses / pricing / posts / voices / faq / story（将来 microCMS/MDX へ差し替え前提）
+public/assets/images/  画像一式（→ ASSETS.md に差し込みガイド）
+```
+
+>>>>>>> 53d3e65035159a569ab8fe7c5650719f07105442
 ## 画像の差し込み
 
 `ASSETS.md` に全画像のファイル名・用途・推奨サイズを記載。`public/assets/images/...` に同名で置けば、
@@ -83,6 +95,13 @@ public/assets/images/  画像一式（→ ASSETS.md に差し込みガイド）
 
 ## TODO（将来）
 
+<<<<<<< HEAD
 - 未使用となった `lib/data/posts.ts` / `blog/[slug]/ArticleClient.tsx`（旧・静的記事方式）の整理
 - OG画像（`/assets/images/hero/og.png`）の用意（体験・お問い合わせは LINE／YouCanBook.me の外部リンクへ誘導する構成で確定済み）
 - 受講生の声（testimonial）データの追加・料金の実データ反映
+=======
+- お知らせ・ブログを microCMS または MDX へ接続（`lib/data/posts.ts` の型を踏襲）
+- 体験・問い合わせフォームの送信先接続（現状はデモ動作）
+- ヒーロー画像・OG画像（`/assets/images/hero/og.png`）の差し替え
+- 受講生の声・料金の実データ反映
+>>>>>>> 53d3e65035159a569ab8fe7c5650719f07105442

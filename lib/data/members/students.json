@@ -1,0 +1,102 @@
+[
+  {
+    "token": "kw-a7x2m9qp",
+    "displayName": "たろう",
+    "tone": "kids",
+    "quizletUrl": "https://quizlet.com/join/example-taro",
+    "passphrase": null,
+    "startedAt": "2026-05",
+    "lessons": [
+      {
+        "date": "2026-06-26",
+        "message": "きょうは じぶんのことを しょうかいできたね!",
+        "tryThis": "かぞくに 'My name is ...' と いってみよう",
+        "slideSrc": "/assets/slides/kw-a7x2m9qp/2026-06-26.pdf",
+        "countsForTicket": true
+      },
+      {
+        "date": "2026-06-19",
+        "message": "いろの なまえを たくさん おぼえたね!",
+        "slideSrc": "https://www.canva.com/design/example-taro-0619/view",
+        "countsForTicket": true
+      },
+      {
+        "date": "2026-06-12",
+        "message": "きょうは 'How are you?' に じぶんのことばで こたえられたね!",
+        "tryThis": "こんしゅうは かぞくに 'Good morning!' と いってみよう",
+        "slideSrc": "/assets/slides/kw-a7x2m9qp/2026-06-12.png",
+        "countsForTicket": true
+      },
+      {
+        "date": "2026-06-05",
+        "message": "はじめての レッスン!",
+        "countsForTicket": false
+      }
+    ],
+    "ticket": {
+      "label": "4かいチケット",
+      "total": 4,
+      "startDate": "2026-06-01"
+    },
+    "bonusStamps": [
+      { "date": "2026-06-20", "type": "homework", "note": "しゅくだい パーフェクト!" }
+    ]
+  },
+  {
+    "token": "kw-h3k9wtqz",
+    "displayName": "はなこ",
+    "tone": "kids",
+    "quizletUrl": null,
+    "passphrase": null,
+    "startedAt": "2026-04",
+    "lessons": [
+      {
+        "date": "2026-06-24",
+        "message": "すきな どうぶつを えいごで いえたね!",
+        "slideSrc": "/assets/slides/kw-h3k9wtqz/2026-06-24.pdf"
+      },
+      {
+        "date": "2026-06-10",
+        "message": "すうじを 10まで いえるように なったね!"
+      }
+    ],
+    "ticket": null,
+    "bonusStamps": []
+  },
+  {
+    "token": "kw-m5n8rzxy",
+    "displayName": "田中",
+    "tone": "adult",
+    "quizletUrl": "https://quizlet.com/join/example-tanaka",
+    "passphrase": null,
+    "startedAt": "2026-03",
+    "lessons": [
+      {
+        "date": "2026-06-28",
+        "message": "レストランでの注文フレーズを練習しました。",
+        "tryThis": "お店で 'Could I have...' と言ってみましょう",
+        "slideSrc": "https://www.canva.com/design/example-tanaka-0628/view",
+        "countsForTicket": true
+      },
+      {
+        "date": "2026-06-14",
+        "message": "道案内の表現を学びました。",
+        "countsForTicket": true
+      },
+      {
+        "date": "2026-06-07",
+        "message": "自己紹介と趣味について話しました。",
+        "slideSrc": "/assets/slides/kw-m5n8rzxy/2026-06-07.pdf",
+        "countsForTicket": true
+      }
+    ],
+    "ticket": {
+      "label": "8かいチケット",
+      "total": 8,
+      "startDate": "2026-06-01"
+    },
+    "bonusStamps": [
+      { "date": "2026-06-15", "type": "homework", "note": "宿題を丁寧に提出されました" }
+    ]
+  }
+]

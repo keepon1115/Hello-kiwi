@@ -66,3 +66,19 @@
 | `blog/blog-manuka.png` | マヌカハニー | 1200×630 |
 | `blog/blog-nz-english.png` | NZ英語と教科書英語 | 1200×630 |
 | `blog/blog-summer.png` | 夏の無料体験 | 1200×630 |
+
+## icons/（PWAアイコン。会員エリア manifest 用）
+未配置の間は `hero/kiwi4.png`（既存マスコット）を代用します。下記を正方形で書き出して置くと自動切替。
+| ファイル | 用途 | サイズ |
+|---|---|---|
+| `icons/icon-192.png` | ホーム画面アイコン | 192×192（正方形・余白少なめ） |
+| `icons/icon-512.png` | ホーム画面アイコン（大） | 512×512（正方形・余白少なめ） |
+
+## slides/[token]/・audio/voices/（会員エリア：先生が運用時に追加）
+`lib/data/members/students.json` の `slideSrc`、`voices.json` の `audioSrc` に書いたパスへ、レッスンごとに配置します。
+未配置の間は `SlideSlot`／`AudioSlot` がファイル名つきのプレースホルダを表示します（ImageSlotと同じ思想）。
+| 置き場所 | 用途 | 形式 |
+|---|---|---|
+| `slides/[token]/YYYY-MM-DD.pdf` | その日のレッスンスライド | PDF（新しいタブで表示） |
+| `slides/[token]/YYYY-MM-DD.png` 等 | その日のレッスンスライド（画像） | png/jpg/webp（タップで拡大） |
+| `audio/voices/YYYY-Www.mp3` | せんせいの声ポスト音声 | mp3 |

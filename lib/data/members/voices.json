@@ -1,0 +1,18 @@
+[
+  {
+    "id": "2026-w27",
+    "date": "2026-07-01",
+    "title": "Sweet as!",
+    "meaning": "「いいね!/さいこう!」NZの ていばんの あいづち",
+    "audioSrc": "/assets/audio/voices/2026-w27.mp3",
+    "script": "Sweet as! That sounds great."
+  },
+  {
+    "id": "2026-w26",
+    "date": "2026-06-24",
+    "title": "No worries!",
+    "meaning": "「だいじょうぶだよ/きにしないで」という やさしい へんじ",
+    "audioSrc": "/assets/audio/voices/2026-w26.mp3",
+    "script": "No worries! Take your time."
+  }
+]
