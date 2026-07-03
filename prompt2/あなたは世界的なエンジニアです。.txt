@@ -1,0 +1,100 @@
+あなたは世界的なエンジニアです。
+以下の点、修正してください。
+
+①コース・料金ページの修正です。
+キッズABCから予定表までスマホでみたら大きすぎて右側が切れていて見えなくなっているのを直して
+
+➁お知らせ・NZコラムページの修正です
+すべて　お知らせ　イベント　NZコラムのところを押したらその記事が表示されるようにして
+（今はお知らせを押しても何も表示されていない、他のも一緒です）
+
+③全体の修正です
+画面サイズが大きいPCのときに、ホームページがスマホのように中央に細長く寄ってしまい、左右に巨大な余白ができてしまいます。
+画面を少し小さくすると（中くらいのサイズ）、理想の2カラムレイアウト（2つ目の横並びの状態）になります。
+
+大画面PC（lgやxl、2xlサイズ）のときでも、スマホ風に潰れず、中サイズと同じように横に広がったレイアウトを維持できるように、コンテナの最大幅（max-width）やレスポンシブの設定を修正してください。
+
+特に関連していそうな、全体を囲っているラッパー（containerやmax-w-xxxの指定がある部分）のコードを直したいです。
+
+④Englishページの修正です
+左上のキャラクターは消して
+Welcome to Hello Kiwiの下に下の画像入れて
+C:\dev\Hello-kiwi-main\public\assets\images\hero　のhero-main.jpan.png
+
+Learn with joy, and your world opens up.をLearn Japanese. Experience Japan. Connect Cultures.に変えて
+
+English conversation taught by a bilingual Japanese teacher who grew up in New Zealand — starting from zero English. Beginner-friendly and fully 1-on-1.をKia Ora! I’m Nobu, the founder of Hello Kiwi.
+
+I was born in Japan but grew up in New Zealand from a young age. After spending many years living, studying, and working in New Zealand, I have now returned to Japan and currently live in Osaka.
+
+Because I understand both Japanese and New Zealand culture, I created Hello Kiwi to help people enjoy language learning and cultural experiences in a relaxed and practical way.
+
+Whether you’re looking to improve your English skills or explore Japan with a local guide, I’m here to help.に変えて
+
+その下にLearn More About Meのボタン追加、リンクはhttps://www.hiddenjapanworld.com/about-hidden-japan-world/
+
+About the teacherをJapanese Lessons Designed Around Youに変えて
+
+Born in Tokyo, our teacher moved to New Zealand at age 6 — understanding not a single word of English. Through gestures, smiles and real friendships, they discovered that connection comes before perfection. That experience is the heart of every lesson here.
+
+“Because I started from zero, I understand exactly how a beginner feels.”を
+Everyone learns differently, and that’s okay! At Hello Kiwi Japanese, I offer both online and in-class lessons that are completely tailored to you. Together, we’ll focus on what matters most to you!
+
+Whether that’s speaking confidently, understanding Japanese culture, preparing for exams, or getting ready for your next adventure in Japan.
+
+Let’s make learning Japanese enjoyable, practical, and meaningful for you.に変えて
+
+その下に
+Book a free trial　(リンクhttps://tidycal.com/nobutakasatons/30-minute)
+日本語サイトへ →(リンクhttps://www.hellokiwieikaiwa.com/)ボタンを持ってきて
+
+Coursesを100-Minute Japanese Travel Courseに変えて(ちょっと文字小さく)
+その下にしたの文章入れて
+Visiting Japan soon?
+This practical 100-minute course is designed for travellers who want to learn useful Japanese before or during their trip.
+Instead of focusing on grammar rules and textbooks, you'll learn phrases that you can use immediately while exploring Japan.
+Topics may include:
+
+この下の文章はちょっと目立たせて
+・reetings and introductions
+・Ordering food and drinks
+・Shopping and payments
+・Asking for directions
+・Using trains and public transport
+・Checking into hotels
+・Useful phrases for everyday travel
+
+この下の文章は普通に
+The lesson is fully customised to your travel plans, destination, and Japanese level.
+Whether you're visiting Osaka, Tokyo, Kyoto, or travelling around Japan, you'll leave with practical Japanese that you can use straight away.
+
+ここにボタン追加
+Learn More(リンクhttps://www.hellokiwieikaiwa.com/Real-Japanese/)
+
+courseと同じ大きさで
+Osaka Tour Guide
+この下に文章入れて
+Planning a trip to Osaka?
+I offer local guiding services around Osaka and nearby areas, helping visitors experience Japan beyond the typical tourist attractions.
+
+Instead of joining a large tour group, you’ll explore with someone who understands both Japanese culture and the perspective of international visitors. Having lived in both New Zealand and Japan, I can help bridge the cultural gap and make your trip more comfortable and enjoyable.
+
+I can help you:
+
+・Explore local neighbourhoods
+・Visit popular sightseeing spots
+・Learn how to use Osaka’s trains and public transportation
+・Experience everyday Japan beyond typical tourist destinations
+・Understand Japanese customs and culture
+
+Whether it’s your first visit to Japan or your fifth, I’d love to help you discover Osaka with confidence and create lasting memories along the way.
+
+Not sure yet?
+
+Book a free 30-minute consultation and let’s talk about your goals, travel plans, and how Hello Kiwi can help.
+
+この下にボタン
+Book a Free Consultation(リンクhttps://tidycal.com/nobutakasatons/30-minute)
+
+
+
