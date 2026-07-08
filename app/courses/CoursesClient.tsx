@@ -128,8 +128,8 @@ export function CoursesClient() {
             <h2>予定表</h2>
             <p>通いたいときに、学べる分だけ。</p>
             <ImageSlot
-              src="/assets/images/school/schedule5-7.jpg"
-              label="schedule5-7"
+              src="/assets/images/school/schedule7-9.jpg"
+              label="schedule7-9"
               alt="Hello Kiwi英会話の予定表"
               ratio="4/3"
               className="schedule-img"
