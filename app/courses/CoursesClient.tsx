@@ -93,7 +93,10 @@ export function CoursesClient() {
                       </td>
                       <td data-label="時間">{p.format}</td>
                       <td data-label="通常価格">{p.regular}</td>
-                      <td data-label="スクール生特別価格" className="hl">
+                      <td
+                        data-label="スクール生特別価格"
+                        className={p.course === '1回' ? 'hl' : 'student-unavailable'}
+                      >
                         {p.student}
                       </td>
                     </tr>
@@ -290,6 +293,7 @@ export function CoursesClient() {
             font-size: 0.78rem;
           }
           .price-table td:last-child { border-bottom: none; }
+          .price-table td.student-unavailable { display: none; }
         }
       `}</style>
     </>

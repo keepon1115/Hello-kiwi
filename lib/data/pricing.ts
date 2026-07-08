@@ -16,13 +16,13 @@ export const PLANS: Plan[] = [
     course: '6回チケット',
     format: '50分',
     regular: '23,100円（1回3,850円）',
-    student: '2,750円'
+    student: 'ー'
   },
   {
     course: '12回チケット',
     format: '50分',
     regular: '39,600円（1回3,300円）',
-    student: '2,750円'
+    student: 'ー'
   }
 ];
 
