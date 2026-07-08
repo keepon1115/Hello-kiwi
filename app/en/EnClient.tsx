@@ -6,7 +6,7 @@ import { Reveal } from '@/components/Reveal';
 const TRIAL_URL = 'https://tidycal.com/nobutakasatons/30-minute';
 const JAPANESE_SITE_URL = 'https://www.hellokiwieikaiwa.com/';
 const ABOUT_URL = 'https://www.hiddenjapanworld.com/about-hidden-japan-world/';
-const TRAVEL_COURSE_URL = 'https://www.hellokiwieikaiwa.com/Real-Japanese/';
+const TRAVEL_COURSE_URL = 'https://tidycal.com/nobutakasatons/30-minute';
 
 const TRAVEL_TOPICS = [
   'Greetings and introductions',
@@ -121,7 +121,7 @@ export function EnClient() {
               </p>
             </div>
             <a href={TRAVEL_COURSE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Learn More
+            Book a free trial lesson
             </a>
           </Reveal>
 
