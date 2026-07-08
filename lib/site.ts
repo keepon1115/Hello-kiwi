@@ -26,6 +26,11 @@ export const LINKS = {
   englishSteam: 'https://claft.keeponlearning.fun/english-steam'
 } as const;
 
+export const RESERVATION = {
+  url: 'https://select-type.com/rsv/?id=3spOTwJvnpQ&c_id=436907',
+  label: 'よやくページはこちら'
+} as const;
+
 export const NAV: { href: string; label: string; en: string }[] = [
   { href: '/', label: 'ホーム', en: 'Home' },
   { href: '/about', label: 'Hello Kiwiについて', en: 'About' },

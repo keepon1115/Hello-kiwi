@@ -1,0 +1,20 @@
+[
+  {
+    "id": "kiwi-bird",
+    "date": "2026-07-01",
+    "titleJa": "キウィバードは とべない とり",
+    "titleEn": "The kiwi is a flightless bird",
+    "body": "ニュージーランドの シンボルの キウィどりは、はねが あるのに とべません。よるに うごく とりで、はなさきの ひげのような はねで むしを さがして たべます。",
+    "emoji": "🥝",
+    "imageSrc": null
+  },
+  {
+    "id": "haka",
+    "date": "2026-06-20",
+    "titleJa": "ハカは マオリの でんとうの おどり",
+    "titleEn": "The haka is a traditional Māori dance",
+    "body": "ラグビーの しあいの まえなどに みられる ちからづよい おどりです。もともとは たたかいの まえに きもちを たかめる ための ものでした。",
+    "emoji": "💪",
+    "imageSrc": null
+  }
+]

@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
-import type { Faq } from '@/lib/data/faq';
+import type { ReactNode } from 'react';
 
-// FAQ用アコーディオン。キーボード操作・aria 対応。
-export function Accordion({ items }: { items: Faq[] }) {
+// 汎用アコーディオン。キーボード操作・aria 対応。a は文字列に限らず ReactNode を許容する。
+export function Accordion({ items }: { items: { q: string; a: ReactNode }[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -23,7 +23,7 @@ export function Accordion({ items }: { items: Faq[] }) {
               </span>
             </button>
             <div className="acc-a" role="region" hidden={!isOpen}>
-              <p>{item.a}</p>
+              {typeof item.a === 'string' ? <p>{item.a}</p> : item.a}
             </div>
           </div>
         );
