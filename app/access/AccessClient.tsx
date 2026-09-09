@@ -17,7 +17,6 @@ export function AccessClient() {
         <div className="container reveal">
           <p className="eyebrow">Access</p>
           <h1>アクセス</h1>
-          <p className="lead">近鉄八尾駅から徒歩8分。オンラインでも全国から受講できます。</p>
         </div>
       </section>
 
