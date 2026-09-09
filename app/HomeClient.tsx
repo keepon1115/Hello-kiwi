@@ -5,7 +5,7 @@ import { FeatureCards } from '@/components/FeatureCards';
 import { CTASection } from '@/components/CTASection';
 import { Reveal } from '@/components/Reveal';
 import { ImageSlot } from '@/components/ImageSlot';
-import { COURSES } from '@/lib/data/courses';
+import { COURSES, chipClass } from '@/lib/data/courses';
 import type { NotePost } from '@/lib/note';
 
 export function HomeClient({ posts }: { posts: NotePost[] }) {
@@ -84,14 +84,14 @@ export function HomeClient({ posts }: { posts: NotePost[] }) {
           <SectionHeading
             eyebrow="Courses"
             title="コース・料金"
-            lead="えらべる3つの基本コース。1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。教室もオンラインも選べます。"
+            lead="えらべる6つのコース。1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。教室もオンラインも選べます。"
           />
           <div className="course-list">
             {COURSES.map((c, i) => (
               <Reveal key={c.slug} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <Link href={`/courses#${c.slug}`} className="card card-hover cmini">
                   <div className="cmini-body">
-                    <span className="chip">{c.ageBadge}</span>
+                    <span className={chipClass(c.colorGroup)}>{c.ageBadge}</span>
                     <strong>{c.name}</strong>
                     <p>{c.lead}</p>
                     <span className="cmini-go">詳しく見る →</span>

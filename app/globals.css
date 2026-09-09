@@ -171,6 +171,14 @@ img { max-width: 100%; display: block; }
   padding: 0.32em 0.85em;
   border-radius: 999px;
 }
+.chip-blue {
+  background: rgb(74 144 217 / 0.14);
+  color: color-mix(in srgb, #4a90d9 78%, var(--cocoa));
+}
+.chip-amber {
+  background: rgb(255 247 237);
+  color: color-mix(in srgb, var(--kiwi-orange) 72%, #92400e);
+}
 
 .reveal {
   opacity: 0;

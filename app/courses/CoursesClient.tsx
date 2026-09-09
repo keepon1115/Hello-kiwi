@@ -1,12 +1,12 @@
 'use client';
 import Link from 'next/link';
 import { useReveal } from '@/lib/useReveal';
-import { COURSES, COURSE_COMMON } from '@/lib/data/courses';
+import { COURSES, COURSE_COMMON, chipClass, topicsClass, courseEnClass } from '@/lib/data/courses';
 import { LINKS } from '@/lib/site';
 import { PLANS, PRICING_NOTES } from '@/lib/data/pricing';
+import { BUSINESS_HOURS } from '@/lib/data/hours';
 import { CTASection } from '@/components/CTASection';
 import { Reveal } from '@/components/Reveal';
-import { ImageSlot } from '@/components/ImageSlot';
 
 export function CoursesClient() {
   useReveal();
@@ -18,7 +18,7 @@ export function CoursesClient() {
           <p className="eyebrow">Courses & Pricing</p>
           <h1>コース・料金</h1>
           <p className="lead">
-            えらべる3つの基本コース。
+            えらべる6つのコース。
             <br />
             1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。
           </p>
@@ -45,9 +45,9 @@ export function CoursesClient() {
               <article id={c.slug} className="course card">
                 <div className="course-head">
                   <div>
-                    <span className="chip">{c.ageBadge}</span>
+                    <span className={chipClass(c.colorGroup)}>{c.ageBadge}</span>
                     <h2>{c.name}</h2>
-                    <p className="course-en">{c.enName}</p>
+                    <p className={courseEnClass(c.colorGroup)}>{c.enName}</p>
                   </div>
                 </div>
                 <p className="course-lead">{c.lead}</p>
@@ -58,7 +58,7 @@ export function CoursesClient() {
                     ))}
                   </ul>
                 )}
-                <div className="topics">
+                <div className={topicsClass(c.colorGroup)}>
                   {c.topics.map((t) => (
                     <span key={t}>{t}</span>
                   ))}
@@ -83,6 +83,7 @@ export function CoursesClient() {
                     <th>時間</th>
                     <th>通常価格</th>
                     <th className="hl">スクール生特別価格</th>
+                    <th>備考</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -95,10 +96,11 @@ export function CoursesClient() {
                       <td data-label="通常価格">{p.regular}</td>
                       <td
                         data-label="スクール生特別価格"
-                        className={p.course === '1回' ? 'hl' : 'student-unavailable'}
+                        className={p.hasStudentPrice ? 'hl' : 'student-unavailable'}
                       >
                         {p.student}
                       </td>
+                      <td data-label="備考">{p.note}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -127,17 +129,20 @@ export function CoursesClient() {
             </ul>
           </Reveal>
 
-          <Reveal className="schedule card" delay={3}>
-            <h2>予定表</h2>
-            <p>通いたいときに、学べる分だけ。</p>
-            <ImageSlot
-              src="/assets/images/school/schedule7-9.jpg"
-              label="schedule7-9"
-              alt="Hello Kiwi英会話の予定表"
-              ratio="4/3"
-              className="schedule-img"
-            />
-            <div className="schedule-copy">
+          <Reveal className="hours-section" delay={3}>
+            <h2>営業時間</h2>
+            <p className="hours-sub">通いたいときに、学べる分だけ。</p>
+            <div className="hours-card card">
+              <ul className="hours-list">
+                {BUSINESS_HOURS.map((h) => (
+                  <li key={h.day}>
+                    <span className="hours-day">{h.day}</span>
+                    <span className="hours-time">{h.time}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="hours-copy">
               <p>スケジュールに縛られず、行きたいときに予約して学べます。</p>
               <p>
                 固定の曜日はありません。「いま学びたい」「時間ができた」というタイミングでその都度予約して、自分のペースで自由に続けられます。
@@ -183,6 +188,8 @@ export function CoursesClient() {
         .course-head { display: flex; gap: 16px; align-items: center; margin-bottom: 14px; }
         .course-head h2 { font-size: clamp(1.4rem, 4vw, 1.9rem); margin: 4px 0 2px; }
         .course-en { color: var(--leaf-green); font-weight: 700; font-size: 0.85rem; margin: 0; }
+        .course-en-blue { color: #4a90d9; }
+        .course-en-amber { color: color-mix(in srgb, var(--kiwi-orange) 78%, #92400e); }
         .course-lead { color: var(--cocoa-soft); margin: 0 0 16px; }
         .course-points { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 10px; }
         .course-points li { font-size: 0.92rem; }
@@ -194,6 +201,14 @@ export function CoursesClient() {
           padding: 6px 12px;
           font-size: 0.82rem;
           font-weight: 700;
+        }
+        .topics-blue span {
+          background: rgb(74 144 217 / 0.12);
+          color: #4a90d9;
+        }
+        .topics-amber span {
+          background: rgb(255 247 237);
+          color: color-mix(in srgb, var(--kiwi-orange) 78%, #92400e);
         }
         .course-cta { display: flex; flex-wrap: wrap; gap: 12px; }
         :global(.pricing) { scroll-margin-top: 90px; }
@@ -207,7 +222,7 @@ export function CoursesClient() {
           background: #fff;
           border-radius: 18px;
           overflow: hidden;
-          min-width: 640px;
+          min-width: 760px;
           border: 1px solid rgb(var(--cocoa-rgb) / 0.08);
         }
         .price-table th,
@@ -232,17 +247,48 @@ export function CoursesClient() {
         .pricing-notes li { color: var(--cocoa-soft); font-size: 0.88rem; }
         .pricing-notes a { color: var(--leaf-green); font-weight: 700; text-decoration: underline; }
         .pricing-notes .campaign { color: #d92828; font-weight: 800; }
-        :global(.schedule) { text-align: center; }
-        :global(.schedule) h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); margin-bottom: 8px; }
-        :global(.schedule) > p { color: var(--cocoa); font-weight: 800; margin: 0 0 20px; }
-        :global(.schedule-img) { border-radius: 16px; box-shadow: var(--shadow-soft); }
-        .schedule-copy {
-          margin: 20px auto 0;
+        :global(.hours-section) { text-align: center; }
+        :global(.hours-section) h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); margin-bottom: 8px; }
+        .hours-sub { color: var(--cocoa); font-weight: 800; margin: 0 0 24px; }
+        .hours-card {
+          max-width: 480px;
+          margin: 0 auto;
+          padding: 0;
+          overflow: hidden;
+        }
+        .hours-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .hours-list li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          padding: 14px 20px;
+          border-bottom: 1px solid rgb(var(--cocoa-rgb) / 0.08);
+        }
+        .hours-list li:last-child { border-bottom: none; }
+        .hours-day {
+          font-weight: 700;
+          color: var(--cocoa);
+          font-size: 0.95rem;
+        }
+        .hours-time {
+          font-weight: 600;
+          color: var(--cocoa-soft);
+          font-size: 0.92rem;
+          font-variant-numeric: tabular-nums;
+        }
+        .hours-copy {
+          margin: 28px auto 0;
           max-width: 38em;
           color: var(--cocoa-soft);
-          text-align: left;
+          text-align: center;
         }
-        .schedule-copy p { margin: 0 0 10px; }
+        .hours-copy p { margin: 0 0 12px; line-height: 1.7; }
+        .hours-copy p:last-child { margin-bottom: 0; }
         :global(.steam-card) {
           max-width: 760px;
           margin: 0 auto;
