@@ -18,7 +18,7 @@ export function CoursesClient() {
           <p className="eyebrow">Courses & Pricing</p>
           <h1>コース・料金</h1>
           <p className="lead">
-            えらべる6つのコース。
+            小学生から大人まで、えらべる6つのコース。
             <br />
             1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。
           </p>
@@ -129,19 +129,17 @@ export function CoursesClient() {
             </ul>
           </Reveal>
 
-          <Reveal className="hours-section" delay={3}>
+          <Reveal className="hours-section card" delay={3}>
             <h2>営業時間</h2>
             <p className="hours-sub">通いたいときに、学べる分だけ。</p>
-            <div className="hours-card card">
-              <ul className="hours-list">
-                {BUSINESS_HOURS.map((h) => (
-                  <li key={h.day}>
-                    <span className="hours-day">{h.day}</span>
-                    <span className="hours-time">{h.time}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="hours-list">
+              {BUSINESS_HOURS.map((h) => (
+                <li key={h.day}>
+                  <span className="hours-day">{h.day}</span>
+                  <span className="hours-time">{h.time}</span>
+                </li>
+              ))}
+            </ul>
             <div className="hours-copy">
               <p>スケジュールに縛られず、行きたいときに予約して学べます。</p>
               <p>
@@ -247,26 +245,24 @@ export function CoursesClient() {
         .pricing-notes li { color: var(--cocoa-soft); font-size: 0.88rem; }
         .pricing-notes a { color: var(--leaf-green); font-weight: 700; text-decoration: underline; }
         .pricing-notes .campaign { color: #d92828; font-weight: 800; }
-        :global(.hours-section) { text-align: center; }
-        :global(.hours-section) h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); margin-bottom: 8px; }
-        .hours-sub { color: var(--cocoa); font-weight: 800; margin: 0 0 24px; }
-        .hours-card {
-          max-width: 480px;
-          margin: 0 auto;
-          padding: 0;
-          overflow: hidden;
-        }
+        :global(.hours-section) { scroll-margin-top: 90px; }
+        :global(.hours-section) h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); margin-bottom: 8px; text-align: center; }
+        .hours-sub { color: var(--cocoa); font-weight: 800; margin: 0 0 24px; text-align: center; }
         .hours-list {
           list-style: none;
           padding: 0;
-          margin: 0;
+          margin: 0 auto 28px;
+          max-width: 480px;
+          border: 1px solid rgb(var(--cocoa-rgb) / 0.08);
+          border-radius: 16px;
+          overflow: hidden;
         }
         .hours-list li {
           display: flex;
           justify-content: space-between;
           align-items: center;
           gap: 16px;
-          padding: 14px 20px;
+          padding: 14px 24px;
           border-bottom: 1px solid rgb(var(--cocoa-rgb) / 0.08);
         }
         .hours-list li:last-child { border-bottom: none; }
@@ -282,10 +278,9 @@ export function CoursesClient() {
           font-variant-numeric: tabular-nums;
         }
         .hours-copy {
-          margin: 28px auto 0;
-          max-width: 38em;
+          margin: 0;
           color: var(--cocoa-soft);
-          text-align: center;
+          text-align: left;
         }
         .hours-copy p { margin: 0 0 12px; line-height: 1.7; }
         .hours-copy p:last-child { margin-bottom: 0; }

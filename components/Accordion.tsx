@@ -76,10 +76,11 @@ export function Accordion({ items }: { items: { q: string; a: ReactNode }[] }) {
         .acc-a {
           padding: 0 22px 20px;
         }
-        .acc-a p {
+        .acc-a :global(p) {
           margin: 0;
           color: var(--cocoa-soft);
           font-size: 0.92rem;
+          line-height: 1.65;
         }
       `}</style>
     </div>

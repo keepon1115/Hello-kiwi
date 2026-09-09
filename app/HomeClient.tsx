@@ -31,6 +31,8 @@ export function HomeClient({ posts }: { posts: NotePost[] }) {
             />
           </Reveal>
           <p className="hero-lead">
+            小学生から大人まで対応。
+            <br />
             ニュージーランド育ちの講師と、1対1のプライベートレッスン。
             <br />
             英語がはじめてでも大丈夫。
