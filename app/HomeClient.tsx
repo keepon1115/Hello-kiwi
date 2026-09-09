@@ -87,10 +87,10 @@ export function HomeClient({ posts }: { posts: NotePost[] }) {
             eyebrow="Courses"
             title="コース・料金"
             lead="えらべる6つのコース。
-            <br />
-            1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。
-            <br />
-            教室もオンラインも選べます。"
+<br />
+1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。
+<br />
+教室もオンラインも選べます。"
           />
           <div className="course-list">
             {COURSES.map((c, i) => (
