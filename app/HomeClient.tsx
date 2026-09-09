@@ -71,7 +71,7 @@ export function HomeClient({ posts }: { posts: NotePost[] }) {
             <p className="eyebrow">Your teacher</p>
             <h2>講師紹介</h2>
             <p>
-              英語ゼロからニュージーランドへ渡った経験があるからこそ、最初の一歩の不安がわかります。
+              英語ゼロからニュージーランドへ渡った経験があるからこそ、最初の一歩の不安がわかります。<br />
               ことばに詰まっても、あなたのペースで一緒に進めていきます。
             </p>
             <Link href="/about" className="btn btn-primary">
