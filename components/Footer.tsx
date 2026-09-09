@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { NAV } from '@/lib/site';
+import { LINKS, NAV } from '@/lib/site';
+import { AddressLine } from './AddressLine';
 import { ImageSlot } from './ImageSlot';
 
 const mapEmbedUrl =
@@ -15,7 +16,7 @@ export function Footer({ currentPath = '' }: { currentPath?: string }) {
           <h2>アクセス</h2>
           <p className="family-note">Hello Kiwi は、STEAM教室を運営するキープオンの連携校です。</p>
           <p className="addr">
-            大阪府八尾市光町1-2 マイシン光町ビル4階
+            <AddressLine />
             <br />
             近鉄八尾から徒歩8分
           </p>
@@ -46,6 +47,25 @@ export function Footer({ currentPath = '' }: { currentPath?: string }) {
               h={112}
             />
             <strong>Hello Kiwi 英会話</strong>
+            <p className="foot-addr text-sm">
+              <AddressLine />
+            </p>
+            <a
+              href={LINKS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="foot-instagram"
+              aria-label="Instagram（@hellokiwi.english）"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/images/school/Instagram.png"
+                alt=""
+                width={28}
+                height={28}
+                className="w-7 h-7"
+              />
+            </a>
           </div>
         </div>
 
@@ -111,6 +131,23 @@ export function Footer({ currentPath = '' }: { currentPath?: string }) {
           display: block;
           font-family: var(--font-pop);
           font-size: 1.1rem;
+        }
+        .foot-addr {
+          margin: 0;
+          color: var(--cocoa-soft);
+          font-weight: 500;
+          line-height: 1.6;
+        }
+        .foot-instagram {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 2px;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .foot-instagram:hover {
+          opacity: 0.85;
+          transform: scale(1.05);
         }
         .foot-nav {
           display: flex;

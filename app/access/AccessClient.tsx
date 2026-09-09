@@ -1,11 +1,12 @@
 'use client';
 import { useReveal } from '@/lib/useReveal';
 import { SITE } from '@/lib/site';
+import { AddressLine } from '@/components/AddressLine';
 import { CTASection } from '@/components/CTASection';
 import { Reveal } from '@/components/Reveal';
 import { ImageSlot } from '@/components/ImageSlot';
 
-const MAP_QUERY = encodeURIComponent('大阪府八尾市光町1-2 マイシン光町ビル4階');
+const MAP_QUERY = encodeURIComponent(SITE.address.full);
 
 export function AccessClient() {
   useReveal();
@@ -61,7 +62,7 @@ export function AccessClient() {
                 <dd>
                   〒{SITE.address.postalCode}
                   <br />
-                  大阪府八尾市光町1-2 マイシン光町ビル4階
+                  <AddressLine />
                   <br />
                   <span>
                     4階にあるロボット・プログラミング教室（
