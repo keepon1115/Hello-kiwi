@@ -131,7 +131,7 @@ export function CoursesClient() {
 
           <Reveal className="hours-section card" delay={3}>
             <h2>営業時間</h2>
-            <p className="hours-sub">通いたいときに、学べる分だけ。</p>
+            <p className="hours-sub">※完全予約制（不定休）</p>
             <ul className="hours-list">
               {BUSINESS_HOURS.map((h) => (
                 <li key={h.day}>
@@ -140,12 +140,6 @@ export function CoursesClient() {
                 </li>
               ))}
             </ul>
-            <div className="hours-copy">
-              <p>スケジュールに縛られず、行きたいときに予約して学べます。</p>
-              <p>
-                固定の曜日はありません。「いま学びたい」「時間ができた」というタイミングでその都度予約して、自分のペースで自由に続けられます。
-              </p>
-            </div>
           </Reveal>
         </div>
       </section>
