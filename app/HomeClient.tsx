@@ -33,7 +33,7 @@ export function HomeClient({ posts }: { posts: NotePost[] }) {
           <p className="hero-lead">
             小学生から大人まで対応。
             <br />
-            ニュージーランド育ちの講師と、1対1のプライベートレッスン。
+            ニュージーランド育ちの講師と<br />1対1のプライベートレッスン。
             <br />
             英語がはじめてでも大丈夫。
             <br />
@@ -86,7 +86,7 @@ export function HomeClient({ posts }: { posts: NotePost[] }) {
           <SectionHeading
             eyebrow="Courses"
             title="コース・料金"
-            lead="えらべる6つのコース。1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。教室もオンラインも選べます。"
+            lead="えらべる6つのコース。<br />1対1の個人レッスンなので、ご希望に合わせて内容を柔軟にアレンジできます。<br />教室もオンラインも選べます。"
           />
           <div className="course-list">
             {COURSES.map((c, i) => (
