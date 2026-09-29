@@ -4,7 +4,7 @@ export type BusinessHour = {
 };
 
 export const BUSINESS_HOURS: BusinessHour[] = [
-  { day: '月曜日', time: '09:00～211:00' },
+  { day: '月曜日', time: '09:00～21:00' },
   { day: '火曜日', time: '07:00～13:00' },
   { day: '水曜日', time: '07:00～18:00' },
   { day: '木曜日', time: '06:00～22:00' },
