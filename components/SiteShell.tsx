@@ -104,7 +104,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
       <Footer currentPath={pathname ?? ''} />
 
-      {!pathname?.startsWith('/trial') && (
+      {/* ゲーム中は操作ボタンと重なるので出さない */}
+      {!pathname?.startsWith('/trial') && !pathname?.startsWith('/play/') && (
         <a href={LINKS.line} target="_blank" rel="noopener noreferrer" className="fab" aria-label="LINEで相談">
           LINEで相談
         </a>
