@@ -38,7 +38,6 @@ export const NAV: { href: string; label: string; en: string }[] = [
   { href: '/about', label: 'Hello Kiwiについて', en: 'About' },
   { href: '/courses', label: 'コース・料金', en: 'Courses' },
   { href: '/trial', label: '体験レッスン', en: 'Trial' },
-  { href: '/play', label: 'ゲームであそぶ', en: 'Play' },
   { href: '/blog', label: 'お知らせ・ブログ', en: 'Blog' },
   { href: '/access', label: 'アクセス', en: 'Access' },
   { href: '/faq', label: 'よくある質問', en: 'FAQ' },
