@@ -14,6 +14,7 @@
 | Kiwi度チェック（NZ英語の3択クイズ・7問） | `/play/kiwi-quiz` | `lib/data/games/kiwi-quiz.ts` |
 | Code the Kiwi（英語ブロックのパズル・6ステージ） | `/play/code-the-kiwi` | `lib/data/games/code-the-kiwi.ts` |
 | Kiwi Café（カフェの注文をとる・8問） | `/play/kiwi-cafe` | `lib/data/games/kiwi-cafe.ts` |
+| Kiwi Dress-Up（着せかえ・引っ張る・アイコン保存） | `/play/kiwi-dress-up` | `lib/data/games/kiwi-dress-up.ts` |
 
 問題文・解説・称号・ステージは、上の「中身のデータ」のファイルを直せば変わる。
 
@@ -21,7 +22,7 @@
 
 1. `app/play/layout.tsx` を消す（noindex が外れる）。
 2. `lib/site.ts` の `NAV` に `{ href: '/play', label: 'ゲームであそぶ', en: 'Play' }` を足す。
-3. `app/sitemap.ts` の一覧に `/play` `/play/kiwi-quiz` `/play/code-the-kiwi` `/play/kiwi-cafe` を足す。
+3. `app/sitemap.ts` の一覧に `/play` `/play/kiwi-quiz` `/play/code-the-kiwi` `/play/kiwi-cafe` `/play/kiwi-dress-up` を足す。
 4. （おすすめ）トップページに `/play` へのバナーを置く。
 
 ## Kiwi Café に音声を入れる方法
@@ -34,6 +35,12 @@
 
 音声が入った注文は「聞いて答える」表示になる。文字は隠れ、「▶ Listen」で聞き直し、
 「Show text」で文字を出せる。録音の台本は、同じファイルの各注文の `text` をそのまま使う。
+
+## Kiwi Dress-Up にアイテムを足す方法
+
+`lib/data/games/kiwi-dress-up.ts` の `ITEMS`（服）か `PLACES`（背景）に1つ足す。
+服は 800×800 の座標で `draw` に描き方を書き、`box` にサムネイルの切り抜き範囲を書く。
+キウイの絵はこのゲーム用に描き起こしたもので、サイトのマスコット画像とは別物。
 
 ## 公開前に確認したいこと（未確認）
 

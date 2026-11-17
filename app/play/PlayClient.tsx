@@ -29,6 +29,15 @@ const GAMES = [
     lead: 'NZのカフェの店員になって、英語の注文をトレイにのせます。数や言い直しに気をつけて、全8人。',
     meta: '約4分・大人も子どもも',
     tone: 'day'
+  },
+  {
+    href: '/play/kiwi-dress-up',
+    emoji: '🧢',
+    en: 'Kiwi Dress-Up',
+    title: 'Kiwi Dress-Up',
+    lead: 'キウイを着せかえて、つまんで引っ張って、できあがりをアイコン画像として保存できます。',
+    meta: '好きなだけ・正解はありません',
+    tone: 'day'
   }
 ] as const;
 
