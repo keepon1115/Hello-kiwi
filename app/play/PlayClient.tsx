@@ -20,6 +20,15 @@ const GAMES = [
     lead: '英語のブロックをならべて、夜の森のキウイをごはんまで案内するパズル。全6ステージ。',
     meta: '約5分・小学生から',
     tone: 'night'
+  },
+  {
+    href: '/play/kiwi-cafe',
+    emoji: '☕',
+    en: 'Kiwi Café',
+    title: 'Kiwi Café',
+    lead: 'NZのカフェの店員になって、英語の注文をトレイにのせます。数や言い直しに気をつけて、全8人。',
+    meta: '約4分・大人も子どもも',
+    tone: 'day'
   }
 ] as const;
 
@@ -39,7 +48,7 @@ export function PlayClient() {
       <section className="section">
         <div className="container games">
           {GAMES.map((g, i) => (
-            <Link key={g.href} href={g.href} className={`game reveal d${i + 1} is-${g.tone}`}>
+            <Link key={g.href} href={g.href} className={`game reveal d${(i % 3) + 1} is-${g.tone}`}>
               <span className="game-emoji" aria-hidden="true">
                 {g.emoji}
               </span>

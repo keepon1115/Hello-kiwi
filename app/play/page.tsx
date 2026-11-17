@@ -4,7 +4,7 @@ import { PlayClient } from './PlayClient';
 export const metadata: Metadata = {
   title: 'ゲームであそぶ｜英語×ニュージーランド',
   description:
-    'ニュージーランドの英語クイズ「Kiwi度チェック」と、英語の命令でキウイを動かすパズル「Code the Kiwi」。登録なしで、ブラウザですぐ遊べます。',
+    'NZ英語クイズ「Kiwi度チェック」、英語の命令でキウイを動かす「Code the Kiwi」、カフェで注文をとる「Kiwi Café」。登録なしで、ブラウザですぐ遊べます。',
   alternates: { canonical: '/play' }
 };
 
