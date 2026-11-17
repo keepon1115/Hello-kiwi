@@ -28,7 +28,10 @@ const TABS: { id: Tab; label: string }[] = [
 ];
 
 const REACH = 0.17; // つまんだ点から、どこまで一緒に動くか（絵の一辺に対する割合）
-const MAX_PULL = 0.42; // 一度に引っ張れる長さの上限
+const MAX_PULL = 0.22; // 一度に引っ張れる長さの上限（ゴムのように、近づくほど重くなる）
+const MAX_OFFSET = 0.2; // 何度引っ張っても、各点がずれる量はここまで
+const KEEP = 0.3; // 指を離したあとに残る変形の割合（7割は戻る）
+const DOUBLE_TAP_MS = 320;
 const OUCH = ['Whoa!', 'Hey!', 'Stretchy!', 'Wheee!', 'Oi!'];
 const THUMB = 96;
 
@@ -69,6 +72,8 @@ export function KiwiDressUpClient() {
   const drag = useRef<{ id: number; gx: number; gy: number; start: Float32Array; w: Float32Array } | null>(null);
   const raf = useRef(0);
   const springing = useRef(false);
+  const target = useRef(new Float32Array(POINTS * 2)); // ばねで戻っていく先
+  const lastTap = useRef({ t: 0, x: 0, y: 0 });
   const placeRef = useRef<Place>(PLACES[0]);
 
   const paint = useCallback(() => {
@@ -153,16 +158,65 @@ export function KiwiDressUpClient() {
   }
 
   function pull(start: Float32Array, w: Float32Array, dx: number, dy: number) {
+    // ゴムの手ごたえ：引っ張るほど伸びにくくなり、MAX_PULL を超えない。
     const len = Math.hypot(dx, dy);
-    if (len > MAX_PULL) {
-      dx *= MAX_PULL / len;
-      dy *= MAX_PULL / len;
+    if (len > 0) {
+      const k = (MAX_PULL * Math.tanh(len / MAX_PULL)) / len;
+      dx *= k;
+      dy *= k;
     }
     const o = off.current;
     for (let n = 0; n < POINTS; n++) {
-      o[n * 2] = start[n * 2] + dx * w[n];
-      o[n * 2 + 1] = start[n * 2 + 1] + dy * w[n];
+      let x = start[n * 2] + dx * w[n];
+      let y = start[n * 2 + 1] + dy * w[n];
+      // 同じところを何度引っ張っても、のびすぎないようにする。
+      const m = Math.hypot(x, y);
+      if (m > MAX_OFFSET * 0.6) {
+        const soft = MAX_OFFSET * 0.6 + MAX_OFFSET * 0.4 * Math.tanh((m - MAX_OFFSET * 0.6) / (MAX_OFFSET * 0.4));
+        x *= soft / m;
+        y *= soft / m;
+      }
+      o[n * 2] = x;
+      o[n * 2 + 1] = y;
     }
+  }
+
+  // 今の形から target へ、ぷるんと揺れながら近づける。
+  function springTo(goal: Float32Array) {
+    target.current = goal;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      off.current.set(goal);
+      vel.current.fill(0);
+      paint();
+      return;
+    }
+    if (springing.current) return;
+    cancelAnimationFrame(raf.current);
+    raf.current = 0;
+    springing.current = true;
+    let last = performance.now();
+    const step = (now: number) => {
+      if (!springing.current) return;
+      const dt = Math.min(0.032, (now - last) / 1000);
+      last = now;
+      const o = off.current;
+      const v = vel.current;
+      const g = target.current;
+      let energy = 0;
+      for (let n = 0; n < o.length; n++) {
+        v[n] += (-190 * (o[n] - g[n]) - 7.5 * v[n]) * dt;
+        o[n] += v[n] * dt;
+        energy += Math.abs(o[n] - g[n]) + Math.abs(v[n]) * 0.05;
+      }
+      if (energy < 0.004) {
+        o.set(g);
+        v.fill(0);
+        springing.current = false;
+      }
+      paint();
+      if (springing.current) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   }
 
   function onDown(e: React.PointerEvent<HTMLCanvasElement>) {
@@ -190,45 +244,31 @@ export function KiwiDressUpClient() {
     drag.current = null;
     if (Math.hypot(x - d.gx, y - d.gy) > 0.04) {
       setBubble({ text: OUCH[Math.floor(Math.random() * OUCH.length)] });
+      // 離すと7割もどる。少しだけ変な形が残る。
+      const goal = new Float32Array(off.current.length);
+      for (let n = 0; n < goal.length; n++) {
+        goal[n] = d.start[n] + (off.current[n] - d.start[n]) * KEEP;
+      }
+      springTo(goal);
+      lastTap.current.t = 0;
+      return;
     }
+    // ほとんど動かさずに2回タップしたら、もとどおり。
+    const now = performance.now();
+    const t = lastTap.current;
+    if (now - t.t < DOUBLE_TAP_MS && Math.hypot(x - t.x, y - t.y) < 0.08) {
+      t.t = 0;
+      boing();
+      return;
+    }
+    lastTap.current = { t: now, x, y };
   }
 
   // ぷるんと揺れながら、元の形に戻る。
   function boing() {
     drag.current = null;
     setBubble({ text: 'Boing!' });
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      off.current.fill(0);
-      vel.current.fill(0);
-      paint();
-      return;
-    }
-    if (springing.current) return;
-    cancelAnimationFrame(raf.current);
-    raf.current = 0;
-    springing.current = true;
-    let last = performance.now();
-    const step = (now: number) => {
-      if (!springing.current) return;
-      const dt = Math.min(0.032, (now - last) / 1000);
-      last = now;
-      const o = off.current;
-      const v = vel.current;
-      let energy = 0;
-      for (let n = 0; n < o.length; n++) {
-        v[n] += (-190 * o[n] - 7.5 * v[n]) * dt;
-        o[n] += v[n] * dt;
-        energy += Math.abs(o[n]) + Math.abs(v[n]) * 0.05;
-      }
-      if (energy < 0.004) {
-        o.fill(0);
-        v.fill(0);
-        springing.current = false;
-      }
-      paint();
-      if (springing.current) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
+    springTo(new Float32Array(POINTS * 2));
   }
 
   // さわらなくても遊べるように、てきとうに何か所か引っ張る。
@@ -339,6 +379,8 @@ export function KiwiDressUpClient() {
           />
           {!touched && <p className="kd-hint">👆 つまんで、ひっぱってみよう</p>}
         </div>
+
+        <p className="kd-caption">つまんでひっぱる・2回タップで、もとどおり</p>
 
         <div className="kd-actions" lang="en">
           <button type="button" className="btn btn-ghost" onClick={boing}>
@@ -477,6 +519,7 @@ export function KiwiDressUpClient() {
           white-space: nowrap;
           pointer-events: none;
         }
+        .kd-caption { margin: -4px 0 -2px; font-size: 0.78rem; color: var(--cocoa-soft); }
 
         .kd-actions { width: 100%; display: grid; grid-template-columns: auto auto 1fr; gap: 8px; }
         .kd-actions :global(.btn) { padding-left: 1.1em; padding-right: 1.1em; }

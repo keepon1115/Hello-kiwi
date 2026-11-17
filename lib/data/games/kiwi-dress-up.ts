@@ -381,22 +381,22 @@ export const ITEMS: Item[] = [
     slot: 'body',
     name: 'scarf',
     say: 'Nice and warm!',
-    box: [230, 320, 340],
+    box: [230, 380, 340],
     draw(c) {
-      rr(c, 476, 430, 62, 132, 14);
+      rr(c, 476, 500, 62, 124, 14);
       c.fillStyle = '#d9412b';
       c.fill();
       outline(c);
       c.fillStyle = '#f6eedd';
-      c.fillRect(480, 520, 54, 14);
+      c.fillRect(480, 584, 54, 14);
       onBody(c, () => {
         c.fillStyle = '#d9412b';
-        c.fillRect(180, 404, 440, 56);
+        c.fillRect(180, 470, 440, 54);
         c.fillStyle = '#f6eedd';
-        for (let x = 200; x < 620; x += 64) c.fillRect(x, 404, 22, 56);
+        for (let x = 200; x < 620; x += 64) c.fillRect(x, 470, 22, 54);
         c.strokeStyle = LINE;
         c.lineWidth = 6;
-        c.strokeRect(170, 404, 460, 56);
+        c.strokeRect(170, 470, 460, 54);
       });
     }
   },
@@ -437,21 +437,21 @@ export const ITEMS: Item[] = [
     name: 'raincoat',
     say: 'Rain? No worries!',
     gloss: 'No worries＝だいじょうぶ（NZでよく使う）',
-    box: [200, 350, 400],
+    box: [200, 400, 400],
     draw(c) {
       onBody(c, () => {
         c.fillStyle = '#f4c21f';
-        c.fillRect(180, 408, 440, 300);
+        c.fillRect(180, 476, 440, 230);
         c.strokeStyle = LINE;
         c.lineWidth = 6;
         c.beginPath();
-        c.moveTo(170, 408);
-        c.lineTo(630, 408);
-        c.moveTo(400, 408);
+        c.moveTo(170, 476);
+        c.lineTo(630, 476);
+        c.moveTo(400, 476);
         c.lineTo(400, 700);
         c.stroke();
         c.fillStyle = LINE;
-        for (const y of [470, 540, 610]) {
+        for (const y of [530, 585, 640]) {
           c.beginPath();
           c.arc(424, y, 9, 0, Math.PI * 2);
           c.fill();
@@ -465,21 +465,21 @@ export const ITEMS: Item[] = [
     name: 'footy jersey',
     say: 'Go, Kiwi, go!',
     gloss: 'footy＝ラグビーなどのフットボール',
-    box: [200, 350, 400],
+    box: [200, 400, 400],
     draw(c) {
       onBody(c, () => {
-        stripes(c, 408, 610, 34, ['#2e8b57', '#f6eedd']);
+        stripes(c, 476, 646, 34, ['#2e8b57', '#f6eedd']);
         c.fillStyle = '#f6eedd';
         c.beginPath();
-        c.moveTo(352, 404);
-        c.lineTo(400, 462);
-        c.lineTo(448, 404);
+        c.moveTo(356, 472);
+        c.lineTo(400, 524);
+        c.lineTo(444, 472);
         c.closePath();
         c.fill();
         c.strokeStyle = LINE;
         c.lineWidth = 6;
         c.stroke();
-        c.strokeRect(170, 408, 460, 204);
+        c.strokeRect(170, 476, 460, 170);
       });
     }
   },
