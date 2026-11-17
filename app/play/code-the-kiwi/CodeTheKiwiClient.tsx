@@ -124,7 +124,7 @@ export function CodeTheKiwiClient() {
   }, []);
 
   useEffect(() => {
-    if (phase !== 'intro') topRef.current?.scrollIntoView({ block: 'start' });
+    if (phase !== 'intro') topRef.current?.scrollIntoView({ block: 'start', behavior: 'instant' });
   }, [phase, stageIndex]);
 
   function stop() {
@@ -223,7 +223,7 @@ export function CodeTheKiwiClient() {
   }番目・上から${stage.goal[1] + 1}番目。`;
 
   return (
-    <div className="ck" ref={topRef}>
+    <div className={`ck ${phase === 'play' ? 'is-play' : ''}`} ref={topRef}>
       {phase === 'intro' && (
         <section className="ck-intro">
           <p className="ck-eyebrow">English × Coding</p>
@@ -249,6 +249,11 @@ export function CodeTheKiwiClient() {
           >
             {cleared > 0 && cleared < STAGES.length ? `Stage ${cleared + 1} からつづける` : 'Start'}
           </button>
+          {cleared > 0 && cleared < STAGES.length && (
+            <button type="button" className="btn ck-clear" onClick={() => openStage(0)}>
+              Stage 1 からやり直す
+            </button>
+          )}
           <p className="ck-meta">全{STAGES.length}ステージ・5分くらい</p>
         </section>
       )}
@@ -276,11 +281,11 @@ export function CodeTheKiwiClient() {
               })}
             </ol>
             <h1 className="ck-title">
-              <span>Stage {stageIndex + 1}</span>
-              {stage.name}
+              <span>Stage {stageIndex + 1}</span> {stage.name}
             </h1>
           </header>
 
+          <div className="ck-stagebox">
           <div className="ck-board" role="img" aria-label={sceneLabel}>
             {cells.map((c) => (
               <span key={`${c.x},${c.y}`} className="ck-cell">
@@ -305,13 +310,18 @@ export function CodeTheKiwiClient() {
             </span>
           </div>
 
+          </div>
+
           <p className={`ck-status is-${status}`} role="status" lang="en">
             {MESSAGE[status]}
           </p>
 
           <div className="ck-panel">
             <div className="ck-program-head">
-              <span lang="en">Program</span>
+              <span lang="en">
+                Program
+                {program.length > 0 && !running && <small className="ck-tip"> · tap to remove</small>}
+              </span>
               <span className="ck-count">
                 {program.length} / {stage.maxBlocks}
               </span>
@@ -341,7 +351,11 @@ export function CodeTheKiwiClient() {
               </div>
             )}
 
-            <ol className="ck-program" lang="en">
+            <ol
+              className="ck-program"
+              lang="en"
+              style={{ minHeight: `calc(${Math.ceil(stage.maxBlocks / 4)} * 32px + ${Math.ceil(stage.maxBlocks / 4) - 1} * 5px + 12px)` }}
+            >
               {program.map((cmd, i) => (
                 <li key={i}>
                   <button
@@ -353,16 +367,17 @@ export function CodeTheKiwiClient() {
                   >
                     <CmdIcon cmd={cmd} />
                     {CMD_LABEL[cmd]}
-                    <span className="ck-x" aria-hidden="true">
-                      ×
-                    </span>
                   </button>
                 </li>
               ))}
               {program.length === 0 && <li className="ck-empty">Tap a block below.</li>}
             </ol>
 
-            <div className="ck-palette" lang="en">
+            <div
+              className="ck-palette"
+              lang="en"
+              style={{ gridTemplateColumns: `repeat(${stage.blocks.length === 3 ? 3 : 2}, minmax(0, 1fr))` }}
+            >
               {stage.blocks.map((cmd) => (
                 <button
                   key={cmd}
@@ -381,7 +396,7 @@ export function CodeTheKiwiClient() {
               {status === 'goal' ? (
                 <button
                   type="button"
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-primary"
                   onClick={() => (isLast ? setPhase('done') : openStage(stageIndex + 1))}
                 >
                   {isLast ? 'Finish!' : 'Next stage →'}
@@ -389,7 +404,7 @@ export function CodeTheKiwiClient() {
               ) : (
                 <button
                   type="button"
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-primary"
                   onClick={run}
                   disabled={running || program.length === 0}
                 >
@@ -471,6 +486,8 @@ export function CodeTheKiwiClient() {
             radial-gradient(1px 1px at 28% 26%, #fff 50%, transparent 51%),
             linear-gradient(180deg, #0f1c31, var(--night) 40%);
         }
+        /* プレイ中は、ヘッダーの下の1画面にすべて収める */
+        .ck.is-play { padding: 8px 12px 12px; overflow-anchor: none; }
         section {
           display: grid;
           gap: 14px;
@@ -506,11 +523,26 @@ export function CodeTheKiwiClient() {
         .ck-demo-kiwi { width: 64px; height: 64px; transform: rotate(90deg); }
         .ck-demo-dots { color: var(--ink-soft); letter-spacing: 0.2em; }
 
-        .ck-head { display: grid; gap: 8px; justify-items: center; width: 100%; }
-        .ck-stages { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
+        .ck-play {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          /* 画面がとても小さいときは、はみ出さずに少しだけ縦にのびる */
+          min-height: clamp(470px, calc(100svh - var(--header-h) - 20px), 860px);
+        }
+        .ck-play > * { flex: none; }
+        .ck-head {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px 10px;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+        .ck-stages { list-style: none; margin: 0; padding: 0; display: flex; gap: 5px; }
         .ck-stages button {
-          width: 44px;
-          height: 44px;
+          width: 34px;
+          height: 34px;
           border-radius: 50%;
           border: 2px solid transparent;
           background: var(--night-2);
@@ -523,18 +555,25 @@ export function CodeTheKiwiClient() {
         .ck-stages button:disabled { opacity: 0.4; cursor: default; }
         .ck-stages button.is-done { background: var(--leaf-green); color: #14233b; opacity: 1; }
         .ck-stages button.is-now { border-color: var(--sunny-yellow); opacity: 1; }
-        .ck-title { font-size: 1.7rem; line-height: 1.15; display: grid; }
+        .ck-title { font-size: 1.2rem; line-height: 1.2; text-align: left; }
         .ck-title span {
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           color: var(--sunny-yellow);
         }
 
+        .ck-play > .ck-stagebox {
+          flex: 1 1 0;
+          min-height: 160px;
+          width: 100%;
+          display: grid;
+          place-items: center;
+          container-type: size;
+        }
         .ck-board {
           position: relative;
-          width: 100%;
-          max-width: 380px;
+          width: min(100cqw, 100cqh, 380px);
           aspect-ratio: 1;
           display: grid;
           grid-template-columns: repeat(${GRID}, 1fr);
@@ -547,7 +586,7 @@ export function CodeTheKiwiClient() {
         .ck-cell {
           display: grid;
           place-items: center;
-          font-size: clamp(1.5rem, 9cqi, 2.2rem);
+          font-size: clamp(1.1rem, 8cqmin, 2.2rem);
           line-height: 1;
           box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
         }
@@ -581,10 +620,11 @@ export function CodeTheKiwiClient() {
 
         .ck-status {
           margin: 0;
-          min-height: 1.6em;
+          min-height: 1.4em;
           font-family: var(--font-pop);
           font-weight: 700;
-          font-size: 1.15rem;
+          font-size: 1rem;
+          line-height: 1.4;
           color: var(--ink-soft);
         }
         .ck-status.is-goal { color: var(--sunny-yellow); }
@@ -593,9 +633,9 @@ export function CodeTheKiwiClient() {
         .ck-panel {
           width: 100%;
           display: grid;
-          gap: 12px;
-          padding: 14px;
-          border-radius: 22px;
+          gap: 8px;
+          padding: 10px;
+          border-radius: 18px;
           background: var(--night-2);
           text-align: left;
         }
@@ -606,13 +646,14 @@ export function CodeTheKiwiClient() {
           font-family: var(--font-pop);
           font-weight: 700;
         }
+        .ck-tip { font-size: 0.75rem; font-weight: 500; color: var(--ink-soft); }
         .ck-count { font-size: 0.85rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
         .ck-repeat {
           display: flex;
           align-items: center;
           gap: 8px;
-          padding: 6px 12px;
-          border-radius: 14px;
+          padding: 2px 10px;
+          border-radius: 12px;
           background: #6b4fb3;
           font-family: var(--font-pop);
           font-weight: 700;
@@ -620,8 +661,8 @@ export function CodeTheKiwiClient() {
         }
         .ck-repeat strong { min-width: 1.2em; text-align: center; font-size: 1.3rem; }
         .ck-repeat button {
-          width: 44px;
-          height: 44px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           border: none;
           background: rgba(255, 255, 255, 0.22);
@@ -634,36 +675,48 @@ export function CodeTheKiwiClient() {
         .ck-program {
           list-style: none;
           margin: 0;
-          padding: 10px;
-          min-height: 68px;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          align-content: flex-start;
+          padding: 6px;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          grid-auto-rows: 32px;
+          gap: 5px;
+          align-content: start;
           border-radius: 14px;
           border: 2px dashed rgba(255, 255, 255, 0.22);
         }
-        .ck-empty { color: var(--ink-soft); font-family: var(--font-pop); align-self: center; }
-        .ck-palette { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .ck-empty { grid-column: 1 / -1; color: var(--ink-soft); font-family: var(--font-pop); align-self: center; }
+        .ck-program .ck-block {
+          width: 100%;
+          height: 100%;
+          min-height: 0;
+          justify-content: center;
+          gap: 3px;
+          padding: 0 4px;
+          border-radius: 8px;
+          font-size: clamp(0.62rem, 2.9cqi, 0.8rem);
+          letter-spacing: -0.01em;
+        }
+        .ck-program .ck-block :global(svg) { width: 13px; height: 13px; flex: none; }
+        .ck-palette { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
         .ck-block {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          min-height: 44px;
-          padding: 6px 12px;
+          min-height: 34px;
+          padding: 4px 9px;
           border: none;
-          border-radius: 12px;
+          border-radius: 10px;
           color: #fff;
           font-family: var(--font-pop);
           font-weight: 700;
-          font-size: 1rem;
+          font-size: 0.9rem;
           line-height: 1.1;
           white-space: nowrap;
           cursor: pointer;
           box-shadow: 0 3px 0 rgba(0, 0, 0, 0.28);
           transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
         }
-        .ck-palette .ck-block { justify-content: center; min-height: 52px; font-size: 1.05rem; }
+        .ck-palette .ck-block { justify-content: center; min-height: 44px; font-size: 1rem; padding: 4px 6px; }
         .ck-block:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.28); }
         .ck-block:disabled { cursor: default; }
         .ck-palette .ck-block:disabled { opacity: 0.45; }
@@ -672,8 +725,8 @@ export function CodeTheKiwiClient() {
         .ck-block.is-right { background: #b0407c; }
         .ck-block.is-jump { background: #3f8a2e; }
         .ck-block.is-active { outline: 3px solid var(--sunny-yellow); outline-offset: 2px; }
-        .ck-x { opacity: 0.7; font-size: 0.9rem; }
-        .ck-controls { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+                .ck-controls { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+        .ck-controls :global(.btn) { min-height: 46px; font-size: 1.05rem; }
         .ck-controls :global(.btn:disabled) { opacity: 0.45; cursor: default; transform: none; }
         .ck :global(.ck-clear) {
           background: transparent;
