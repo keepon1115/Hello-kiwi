@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false }
 };
 
-export default function MyPage({ params }: { params: { token: string } }) {
+export default async function MyPage(props: { params: Promise<{ token: string }> }) {
+  const params = await props.params;
   const student = getStudentByToken(params.token);
   if (!student) notFound();
 
